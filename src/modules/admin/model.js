@@ -1,9 +1,8 @@
-const PG = require('../../lib/Postgres/postgres')
+const PG = require('../../lib/postgress/postgress')
 
 class Admin extends PG {
    ADMIN(login, pass) {
       return this.fetch(`
-
          SELECT 
                *
          FROM

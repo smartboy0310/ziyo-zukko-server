@@ -5,10 +5,10 @@ CREATE TABLE superadmin  (
 );
 
 
-CREATE TABLE briefly_about (
-   briefly_id serial PRIMARY KEY,
-   briefly_title varchar(64) not null,
-   briefly_count varchar(32) not null
+CREATE TABLE about (
+   about_id serial PRIMARY KEY,
+   about_title varchar(64) not null,
+   about_count varchar(32) not null
 );
 
 CREATE TABLE posts (
@@ -20,6 +20,7 @@ CREATE TABLE posts (
    post_type varchar(64) not null,
    post_status boolean not null,
    post_created_by varchar(128),
+   post_is_delete boolean DEFAULT false,
    post_created_at timestamptz DEFAULT CURRENT_TIMESTAMP,
    post_deleted_at timestamptz DEFAULT CURRENT_TIMESTAMP
 );
@@ -57,13 +58,13 @@ CREATE TABLE general (
    email varchar(64) not null,
    address varchar(128) not null,
    locition text not null,
-   work_time varchar(32) not null
+   work_time varchar(32) not null,
+   telegram_link text not null,
+   facebook_link text not null,
+   instagram_link text not null
 );
 
-CREATE TABLE social__link (
-   social_id serial PRIMARY KEY,
-   social__url varchar(256) not null
-);
+
 
 CREATE TABLE appeals (
    appeal_id bigserial PRIMARY KEY,
@@ -91,24 +92,32 @@ CREATE TABLE our_activity (
 CREATE TABLE management (
    management_id bigserial PRIMARY KEY,
    management_name varchar(128) not null,
-   management_role varchar(64) not null,
+   management_role varchar(64) not null, 
    management_image text not null,
+   phone varchar(32) not null,
+   reception_time varchar (128) not null,
+   winning text not null,
+   full_info text not null,
+   academic_degree text not null,  
    telegram_link text not null,
    facebook_link text not null,
    instagram_link text not null,
    management_status boolean not null,
    management_created_at timestamptz DEFAULT CURRENT_TIMESTAMP,
    management_deleted_at timestamptz DEFAULT CURRENT_TIMESTAMP
-)
+);
 CREATE TABLE employees (
    employee_id bigserial PRIMARY KEY,
    employee_name varchar(128) not null,
    employee_role varchar(64) not null,
    employee_image text not null,
+   winning text not null,
+   academic_degree text not null,
+   full_info text not null,
    telegram_link text not null,
    facebook_link text not null,
    instagram_link text not null,
    employee_status boolean not null,
    employee_created_at timestamptz DEFAULT CURRENT_TIMESTAMP,
    employee_deleted_at timestamptz DEFAULT CURRENT_TIMESTAMP
-)
+);

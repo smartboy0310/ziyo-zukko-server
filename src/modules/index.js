@@ -1,8 +1,13 @@
 const express = require("express")
 const router = express.Router()
 
-router.get('/', (_, res) => {
-   res.send("OK")
-})
+const Admin = require('./admin/admin')
+const About = require('./about/about')
+
+router
+      .post('/login', Admin.LOGIN)
+
+      .get('/about', About.GET)
+      .put('/about', About.PUT)
 
 module.exports = router

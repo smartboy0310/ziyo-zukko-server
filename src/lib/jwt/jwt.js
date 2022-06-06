@@ -1,5 +1,5 @@
 const {sign, verify} = require('jsonwebtoken')
-const SECRET_KEY = process.env.SECRET_KEY || 'SECRET_KEY'
+const SECRET_KEY = process.env.SECRET_KEY 
 
 class JWT {
    constructor (data){

@@ -1,16 +1,20 @@
+require('dotenv').config()
 const model = require('./model');
 const JWT = require('../../lib/jwt/jwt')
+
 
 module.exports = {
 	LOGIN: async (req, res) => {
 		try {
-			const { login, pass } = req.body;         
+			
+			const { login, pass } = req.body;   			    
 			const foundAdmin = await model.ADMIN(login, pass);
+			const token = new JWT({id: foundAdmin.id}).sign()
+
 			if (foundAdmin) {
 				res.json({
-					token: JWT.
+					token: token
 				});
-				//res.cookie('token', sign({ id: foundAdmin.id }))
 			} else {
 				res.json({
 						status: 401,
