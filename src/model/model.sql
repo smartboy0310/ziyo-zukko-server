@@ -30,7 +30,9 @@ CREATE TABLE photo_box (
    photo_title varchar(256) not null,
    photo_url text not null,
    photo_category varchar (32) not null,
+   photo_name text not null,
    photo_status boolean not null,
+   photo_is_delete boolean DEFAULT false,
    photo_created_at timestamptz DEFAULT CURRENT_TIMESTAMP,
    photo_deleted_at timestamptz DEFAULT CURRENT_TIMESTAMP
 );
@@ -40,6 +42,7 @@ CREATE TABLE video_box (
    video_title varchar(256)  not null,
    video_url text not null,
    video_status boolean not null,
+   video_is_delete boolean DEFAULT false,
    video_created_at timestamptz DEFAULT CURRENT_TIMESTAMP,
    video_deleted_at timestamptz DEFAULT CURRENT_TIMESTAMP
 );
@@ -49,6 +52,7 @@ CREATE TABLE partner (
    partner_name varchar(256) not null,
    partner_logo text not null,
    partner_status boolean not null,
+   partner_is_delete boolean DEFAULT false,
    partner_created_at timestamptz DEFAULT CURRENT_TIMESTAMP,
    partner_deleted_at timestamptz DEFAULT CURRENT_TIMESTAMP
 );
@@ -102,6 +106,7 @@ CREATE TABLE management (
    telegram_link text not null,
    facebook_link text not null,
    instagram_link text not null,
+   management_is_delete boolean DEFAULT false,
    management_status boolean not null,
    management_created_at timestamptz DEFAULT CURRENT_TIMESTAMP,
    management_deleted_at timestamptz DEFAULT CURRENT_TIMESTAMP
@@ -117,6 +122,7 @@ CREATE TABLE employees (
    telegram_link text not null,
    facebook_link text not null,
    instagram_link text not null,
+   employee_is_delete boolean DEFAULT false,
    employee_status boolean not null,
    employee_created_at timestamptz DEFAULT CURRENT_TIMESTAMP,
    employee_deleted_at timestamptz DEFAULT CURRENT_TIMESTAMP
