@@ -8,6 +8,9 @@ const Photo = require('./photo/photo')
 const Video = require('./video/video')
 const Partner = require('./partner/partner')
 const General = require('./general/general')
+const Appeals = require('./appeals/appeals')
+const Certificate = require('./certificate/certificate')
+const Activity = require('./activity/activity')
 
 
 router
@@ -33,5 +36,21 @@ router
 
       .get('/general', General.GET)
       .put('/general', General.PUT)
+
+
+      .get('/appeals', Appeals.GET)
+      .post('/appeals', Appeals.POST)
+      .put('/appeals', Appeals.PUT)
+      .delete('/appeals', Appeals.DELETE)
+
+      .get('/certificate', Certificate.GET)
+      .post('/certificate', FileUpload.array("photos"), Certificate.POST)
+      .put('/certificate', FileUpload.array("photos"), Certificate.PUT)
+      .delete('/certificate', Certificate.DELETE)
+
+      .get('/activity', Activity.GET)
+      .post('/activity', FileUpload.array("photos"), Activity.POST)
+      .put('/activity', FileUpload.array("photos"), Activity.PUT)
+      .delete('/activity', Activity.DELETE)
 
 module.exports = router

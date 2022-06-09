@@ -72,12 +72,13 @@ CREATE TABLE general (
 
 
 CREATE TABLE appeals (
-   appeal_id bigserial PRIMARY KEY,
+   applicant_id bigserial PRIMARY KEY,
    applicant_name varchar(64) not null,
    applicant_phone varchar(32) not null,
    applicant_class varchar(32),
    applicant_content text not null,
    applicant_status boolean DEFAULT false,
+   applicant_is_delete boolean DEFAULT false,
    applicant_created_at timestamptz DEFAULT CURRENT_TIMESTAMP,
    applicant_deleted_at timestamptz DEFAULT CURRENT_TIMESTAMP
 );
@@ -85,13 +86,23 @@ CREATE TABLE appeals (
 CREATE TABLE our_certificate (
    certificate_id serial PRIMARY KEY,
    certificate_title text not null,
-   certificate_photo text [] not null
+   certificate_photo text [] not null,
+   certificate_photo_name text [] not null,
+   certificate_status boolean DEFAULT false,
+   certificate_is_delete boolean DEFAULT false,
+   certificate_creared_at timestamptz DEFAULT CURRENT_TIMESTAMP,
+   certificate_deleted_at timestamptz DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE our_activity (
    activity_id serial PRIMARY KEY,
    activity_title text not null,
-   activity_photo text [] not null
+   activity_photo text [] not null,
+   activity_photo_name text [] not null,
+   activity_status boolean DEFAULT false,
+   activity_is_delete boolean DEFAULT false,
+   activity_creared_at timestamptz DEFAULT CURRENT_TIMESTAMP,
+   activity_deleted_at timestamptz DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE management (

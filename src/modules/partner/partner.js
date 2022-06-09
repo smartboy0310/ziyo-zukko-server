@@ -17,7 +17,7 @@ module.exports = {
    POST: async (req, res) => {
       try {
          const uploadPhoto = req.file
-         const partner_logo = uploadPhoto.originalname
+         const partner_logo = `${process.env.BACKEND_URL}/${uploadPhoto.originalname}`
          const partner_logo_name = uploadPhoto.originalname
          const {partner_name, partner_status} = req.body
 
@@ -48,7 +48,7 @@ module.exports = {
 
          if(uploadPhoto) {
             deleteOldLogo.delete()
-            partner_logo = uploadPhoto.originalname
+            partner_logo = `${process.env.BACKEND_URL}/${uploadPhoto.originalname}`
             partner_logo_name = uploadPhoto.originalname
          }
          else {
