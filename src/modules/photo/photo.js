@@ -39,7 +39,7 @@ module.exports = {
       try {
          const {photo_id, photo_title, photo_category, photo_status} = req.body
          const selectedPhoto = await model.SELECTED__PHOTO(photo_id)
-         const deleteName = new FS(path.resolve(__dirname, '..', '..', '..', 'public', 'images',`${selectedPhoto.photo_name}`))
+         const deleteOldPhoto = new FS(path.resolve(__dirname, '..', '..', '..', 'public', 'images',`${selectedPhoto.photo_name}`))
          let photo_name = '' 
          let photo_url = ''                         
          const uploadPhoto = req.file; 
@@ -47,7 +47,7 @@ module.exports = {
          if (uploadPhoto) {
             photo_name = uploadPhoto.originalname;
             photo_url = `${process.env.BACKEND_URL}/${uploadPhoto.originalname}`;
-            deleteName.delete()
+            deleteOldPhoto.delete()
          } 
          else {
             photo_name = selectedPhoto.photo_name;
@@ -73,11 +73,10 @@ module.exports = {
       try {
          
          const {photo_id} = req.body
-         const selectedPhoto = await model.SELECTED__PHOTO(photo_id)
-         const deleteName = new FS(path.resolve(__dirname, '..', '..', '..', 'public', 'images',`${selectedPhoto.photo_name}`))
+         // const selectedPhoto = await model.SELECTED__PHOTO(photo_id)
+         // const deleteName = new FS(path.resolve(__dirname, '..', '..', '..', 'public', 'images',`${selectedPhoto.photo_name}`))
          const deletePhoto = await model.DELETE_PHOTO(photo_id)   
          if (deletePhoto) {
-            deleteName.delete()
             res.json('Photo deleted')
          }
          else {

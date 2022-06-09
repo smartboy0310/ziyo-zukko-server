@@ -51,6 +51,7 @@ CREATE TABLE partner (
    partner_id serial PRIMARY KEY,
    partner_name varchar(256) not null,
    partner_logo text not null,
+   partner_logo_name text not null,
    partner_status boolean not null,
    partner_is_delete boolean DEFAULT false,
    partner_created_at timestamptz DEFAULT CURRENT_TIMESTAMP,
@@ -76,7 +77,7 @@ CREATE TABLE appeals (
    applicant_phone varchar(32) not null,
    applicant_class varchar(32),
    applicant_content text not null,
-   applicant_status boolean not false,
+   applicant_status boolean DEFAULT false,
    applicant_created_at timestamptz DEFAULT CURRENT_TIMESTAMP,
    applicant_deleted_at timestamptz DEFAULT CURRENT_TIMESTAMP
 );

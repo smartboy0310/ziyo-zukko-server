@@ -4,11 +4,7 @@ class Photo extends PG {
    ALL_PHOTO () {
       return this.fetchAll(`
          SELECT 
-                  photo_id,
-                  photo_title,
-                  photo_url,
-                  photo_category,
-                  photo_status
+                  *
          FROM
                   photo_box
          WHERE 
