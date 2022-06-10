@@ -11,6 +11,8 @@ const General = require('./general/general')
 const Appeals = require('./appeals/appeals')
 const Certificate = require('./certificate/certificate')
 const Activity = require('./activity/activity')
+const Management = require('./management/management')
+const Employees = require('./employees/employees')
 
 
 router
@@ -52,5 +54,15 @@ router
       .post('/activity', FileUpload.array("photos"), Activity.POST)
       .put('/activity', FileUpload.array("photos"), Activity.PUT)
       .delete('/activity', Activity.DELETE)
+
+      .get('/management', Management.GET)
+      .post('/management', FileUpload.single("photo"), Management.POST)
+      .put('/management', FileUpload.single("photo"), Management.PUT)
+      .delete('/management', Management.DELETE)
+
+      .get('/employees', Employees.GET)
+      .post('/employees', FileUpload.single("photo"), Employees.POST)
+      .put('/employees', FileUpload.single("photo"), Employees.PUT)
+      .delete('/employees', Employees.DELETE)
 
 module.exports = router

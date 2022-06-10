@@ -83,7 +83,7 @@ module.exports = {
    DELETE: async (req, res) => {
       try {         
          const {activity_id} = req.body
-         const deleteAvtivity = await model.DELETE_CERTIFICATE(activity_id)   
+         const deleteAvtivity = await model.DELETE_ACTIVITY(activity_id)   
          if (deleteAvtivity) {
             res.json('Avtivity deleted')
          }
