@@ -6,7 +6,11 @@ const FS = require('../../lib/fs/fs')
 module.exports = {
    GET: async (_, res) => {
       try {
-         res.json( await model.All_PARTNER())
+         res.json({
+            status: 200,
+            uz: await model.All_PARTNER(),
+            ru: await model.All_PARTNER_RU()
+         })
       } catch (error) {
          res.json({
             status: 500,
@@ -16,18 +20,46 @@ module.exports = {
    },
    POST: async (req, res) => {
       try {
+         const { lang } = req.params
          const uploadPhoto = req.file
-         const partner_logo = `${process.env.BACKEND_URL}/${uploadPhoto.originalname}`
-         const partner_logo_name = uploadPhoto.originalname
          const {partner_name, partner_status} = req.body
 
-         const createdPartner = await model.ADD_PARTNER(partner_name, partner_logo, partner_logo_name, partner_status)
+         const partner_logo = `${process.env.BACKEND_URL}/${uploadPhoto.originalname}`
+         const partner_logo_name = uploadPhoto.originalname
+         
 
-         if (createdPartner) {
-            res.json("Partner Created")
+         if(lang == 'uz') {
+            const createdPartner = await model.ADD_PARTNER(partner_name, partner_logo, partner_logo_name, partner_status)
+
+            if (createdPartner) {
+               res.json({
+                  status: 200,
+                  message: "Partner Created"
+               })
+            }
+            else {
+               res.json({
+                  status: 500,
+                  message: "Partner UnCreated"
+               })
+            }
          }
-         else {
-            res.json("Partner UnCreated")
+
+         if(lang == 'ru') {
+            const createdPartner = await model.ADD_PARTNER_RU(partner_name, partner_logo, partner_logo_name, partner_status)
+
+            if (createdPartner) {
+               res.json({
+                  status: 200,
+                  message: "Partner Created"
+               })
+            }
+            else {
+               res.json({
+                  status: 500,
+                  message: "Partner UnCreated"
+               })
+            }
          }
 
       } catch (error) {
@@ -39,12 +71,22 @@ module.exports = {
    },
    PUT: async (req, res) => {
       try {
+         const { lang } = req.params
          const uploadPhoto = req.file
          const {partner_id, partner_name, partner_status} = req.body
+
          let partner_logo = ''
          let partner_logo_name = ''
-         const selectedPartner = await model.SELECTED__PARTNER(partner_id)
-         const deleteOldLogo = new FS(path.resolve(__dirname, '..', '..', '..', 'public', 'images',`${selectedPartner.partner_logo_name}`))
+         let selectedPartner = {}
+
+         if(lang == 'uz') {
+            selectedPartner = await model.SELECTED__PARTNER(partner_id)
+         }
+         if(lang == 'ru') {
+            selectedPartner = await model.SELECTED__PARTNER_RU(partner_id)
+         }
+
+         const deleteOldLogo = new FS(path.resolve(__dirname, '..', '..', '..', 'public', 'images',`${selectedPartner?.partner_logo_name}`))
 
          if(uploadPhoto) {
             deleteOldLogo.delete()
@@ -52,17 +94,42 @@ module.exports = {
             partner_logo_name = uploadPhoto.originalname
          }
          else {
-            partner_logo = selectedPartner.partner_logo
-            partner_logo_name = selectedPartner.partner_logo_name
+            partner_logo = selectedPartner?.partner_logo
+            partner_logo_name = selectedPartner?.partner_logo_name
          }
 
-         const UpdatedPartner = await model.UPDATE_PARTNER(partner_id, partner_name, partner_logo, partner_logo_name, partner_status)
+         if(lang == 'uz') {
+            const UpdatedPartner = await model.UPDATE_PARTNER(partner_id, partner_name, partner_logo, partner_logo_name, partner_status)
          
-         if (UpdatedPartner) {
-            res.json("Partner Updated")
+            if (UpdatedPartner) {
+               res.json({
+                  status: 200,
+                  message: "Partner Updated"
+               })
+            }
+            else {
+              res.json({
+               status: 500,
+               message: "Partner UnUpdated"
+            })
+            }
          }
-         else {
-            res.json("Partner UnUpdated")
+
+         if(lang == 'ru') {
+            const UpdatedPartner = await model.UPDATE_PARTNER_RU(partner_id, partner_name, partner_logo, partner_logo_name, partner_status)
+         
+            if (UpdatedPartner) {
+               res.json({
+                  status: 200,
+                  message: "Partner Updated"
+               })
+            }
+            else {
+              res.json({
+               status: 500,
+               message: "Partner UnUpdated"
+            })
+            }
          }
 
       } catch (error) {
@@ -73,15 +140,41 @@ module.exports = {
       }
    },
    DELETE: async (req, res) => {
-      try {         
+      try {    
+         const { lang } = req.params     
          const {partner_id} = req.body
-         const deletePartner = await model.DELETE_PARTNER(partner_id)   
+
+        if(lang == 'uz') {
+            const deletePartner = await model.DELETE_PARTNER(partner_id)   
+            if (deletePartner) {
+               res.json({
+                  status: 200,
+                  message: 'Partner deleted'
+               })
+            }
+            else {
+               res.json({
+                  status: 500,
+                  message: 'Partner Undeleted'
+               })
+            }   
+        } 
+        
+        if(lang == 'ru') {
+         const deletePartner = await model.DELETE_PARTNER_RU(partner_id)   
          if (deletePartner) {
-            res.json('Partner deleted')
+            res.json({
+               status: 200,
+               message: 'Partner deleted'
+            })
          }
          else {
-            res.json('Partner Undeleted')
-         }      
+            res.json({
+               status: 500,
+               message: 'Partner Undeleted'
+            })
+         }   
+     } 
       } catch (err) {
 	      res.json({
 				status: 500,

@@ -9,9 +9,10 @@ module.exports = {
 			
 			const { login, pass } = req.body;   			    
 			const foundAdmin = await model.ADMIN(login, pass);
-			const token = new JWT({id: foundAdmin.id}).sign()
+			
 
 			if (foundAdmin) {
+				const token = new JWT({id: foundAdmin.id}).sign()
 				res.json({
 					token: token
 				});

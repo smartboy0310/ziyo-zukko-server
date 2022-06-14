@@ -9,7 +9,7 @@ class JWT {
       return sign(this.data, SECRET_KEY, {expiresIn: '1h'})
    }
    verify() {
-      verify(data, SECRET_KEY)
+      return verify(data, SECRET_KEY)
    }
 }
 
