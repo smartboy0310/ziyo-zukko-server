@@ -28,5 +28,26 @@ module.exports = {
 				message: err.message,
 			})
 		}
+	},
+	PUT_PASS: async (req, res) => {
+		try {
+			const {login, old_pass, new_pass} = req.body
+
+			const oldPassword = await model.ADMIN(login, old_pass) 
+			
+			if(oldPassword) {
+				await model.UPADTE_PASS(new_pass)
+				res.json("Password Updated")
+			}
+			else {
+				res.json("Password UnUpdated")
+			}
+			
+		} catch (err) {
+	      res.json({
+				status: 500,
+				message: err.message,
+			})
+		}
 	}
 };

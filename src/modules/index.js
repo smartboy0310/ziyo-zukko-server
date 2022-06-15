@@ -18,6 +18,7 @@ const Employees = require('./employees/employees')
 
 router
       .post('/login', Admin.LOGIN)
+      .put('/login', Authorized.AUTH, Admin.PUT_PASS)
 
       .get('/about', About.GET)
       .put('/about/:lang', Authorized.AUTH, About.PUT)
@@ -42,9 +43,9 @@ router
 
 
       .get('/appeals', Appeals.GET)
-      .post('/appeals/:lang', Authorized.AUTH, Appeals.POST)
-      .put('/appeals', Authorized.AUTH, Appeals.PUT)
-      .delete('/appeals', Authorized.AUTH, Appeals.DELETE)
+      .post('/appeals/:lang', Appeals.POST)
+      .put('/appeals/:lang', Authorized.AUTH, Appeals.PUT)
+      .delete('/appeals/:lang', Authorized.AUTH, Appeals.DELETE)
 
       .get('/certificate', Certificate.GET)
       .post('/certificate/:lang', Authorized.AUTH, FileUpload.array("photos"), Certificate.POST)
