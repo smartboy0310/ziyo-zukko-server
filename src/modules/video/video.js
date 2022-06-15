@@ -4,7 +4,11 @@ const model = require('./model')
 module.exports = {
    GET: async (_, res) => {
       try {
-         res.json( await model.ALL_VIDEO())
+         res.json({
+            status: 200,
+            uz: await model.ALL_VIDEO(),
+            ru: await model.ALL_VIDEO_RU()
+         })
       } catch (error) {
          res.json({
             status: 500,
@@ -14,16 +18,42 @@ module.exports = {
    },
    POST: async(req, res) => {
       try {
-
+         const { lang } = req.params
          const {video_title, video_url, video_status} = req.body
-         const newVideo = await model.ADD_VIDEO(video_title, video_url, video_status)
 
-         if(newVideo) {
-            res.json('New video created')
+        if(lang == 'uz') {
+            const createdVideo = await model.ADD_VIDEO(video_title, video_url, video_status)
+
+            if(createdVideo) {
+               res.json({
+                  status: 200,
+                  message: 'Video created'
+               })
+            }
+            else {
+               res.json({
+                  status: 500,
+                  message: 'Video Uncreated'
+               })
+            }
+        }
+
+        if(lang == 'ru') {
+         const createdVideo = await model.ADD_VIDEO_RU(video_title, video_url, video_status)
+
+         if(createdVideo) {
+            res.json({
+               status: 200,
+               message: 'Video created'
+            })
          }
          else {
-            res.json('New video uncreated')
+            res.json({
+               status: 500,
+               message: 'Video Uncreated'
+            })
          }
+      }
 
       } catch (error) {
          res.json({
@@ -34,15 +64,41 @@ module.exports = {
    },
    PUT: async(req, res) => {
       try {
-
+         const { lang } = req.params
          const {video_id, video_title, video_url, video_status} = req.body
-         const updateVideo = await model.UPDATE_VIDEO(video_id, video_title, video_url, video_status)
 
-         if(updateVideo) {
-            res.json('Video updated')
+         if(lang == 'uz') {
+            const updateVideo = await model.UPDATE_VIDEO(video_id, video_title, video_url, video_status)
+
+            if(updateVideo) {
+               res.json({
+                  status: 200,
+                  message: 'Video updated'
+               })
+            }
+            else {
+               res.json({
+                  status: 500,
+                  message: 'Video Unupdated'
+               })
+            }
          }
-         else {
-            res.json('Video unupdated')
+
+         if(lang == 'ru') {
+            const updateVideo = await model.UPDATE_VIDEO_RU(video_id, video_title, video_url, video_status)
+
+            if(updateVideo) {
+               res.json({
+                  status: 200,
+                  message: 'Video updated'
+               })
+            }
+            else {
+               res.json({
+                  status: 500,
+                  message: 'Video Unupdated'
+               })
+            }
          }
 
       } catch (error) {
@@ -54,17 +110,42 @@ module.exports = {
    },
    DELETE: async (req, res) => {
       try {
-         
+         const { lang } = req.params
          const {video_id} = req.body
-         // const selectedPhoto = await model.SELECTED__PHOTO(photo_id)
-         // const deleteName = new FS(path.resolve(__dirname, '..', '..', '..', 'public', 'images',`${selectedPhoto.photo_name}`))
-         const deleteVideo = await model.DELETE_VIDEO(video_id)   
-         if (deleteVideo) {
-            res.json('Video deleted')
+         
+         if(lang == 'uz') {
+            const deleteVideo = await model.DELETE_VIDEO(video_id) 
+
+            if (deleteVideo) {
+               res.json({
+                  status: 200,
+                  message: 'Video deleted'
+               })
+            }
+            else {
+               res.json({
+                  status: 500,
+                  message: 'Video Undeleted'
+               })
+            } 
          }
-         else {
-            res.json('Video Undeleted')
-         }      
+
+         if(lang == 'ru') {
+            const deleteVideo = await model.DELETE_VIDEO_RU(video_id) 
+
+            if (deleteVideo) {
+               res.json({
+                  status: 200,
+                  message: 'Video deleted'
+               })
+            }
+            else {
+               res.json({
+                  status: 500,
+                  message: 'Video Undeleted'
+               })
+            } 
+         }
       } catch (err) {
 	      res.json({
 				status: 500,

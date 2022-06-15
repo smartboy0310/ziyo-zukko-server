@@ -145,7 +145,8 @@ module.exports = {
          const {partner_id} = req.body
 
         if(lang == 'uz') {
-            const deletePartner = await model.DELETE_PARTNER(partner_id)   
+            const deletePartner = await model.DELETE_PARTNER(partner_id) 
+              
             if (deletePartner) {
                res.json({
                   status: 200,
@@ -161,7 +162,8 @@ module.exports = {
         } 
         
         if(lang == 'ru') {
-         const deletePartner = await model.DELETE_PARTNER_RU(partner_id)   
+         const deletePartner = await model.DELETE_PARTNER_RU(partner_id) 
+
          if (deletePartner) {
             res.json({
                status: 200,
