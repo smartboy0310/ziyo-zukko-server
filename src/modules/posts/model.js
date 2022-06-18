@@ -9,7 +9,7 @@ class Posts extends PG {
                posts
          WHERE 
                post_is_delete = false
-         ORDER_BY
+         ORDER BY
                post_id DESC
       `)
    }
@@ -22,7 +22,7 @@ class Posts extends PG {
                posts_ru
          WHERE 
                post_is_delete = false
-         ORDER_BY
+         ORDER BY
                post_id DESC
       `)
    }
