@@ -14,6 +14,7 @@ module.exports = {
 			if (foundAdmin) {
 				const token = new JWT({id: foundAdmin.id}).sign()
 				res.json({
+					status: 200,
 					token: token
 				});
 			} else {
@@ -37,10 +38,16 @@ module.exports = {
 			
 			if(oldPassword) {
 				await model.UPADTE_PASS(new_pass)
-				res.json("Password Updated")
+				res.json({
+					status: 200, 
+					message: "Password Updated"
+				})
 			}
 			else {
-				res.json("Password UnUpdated")
+				res.json({
+					status: 500, 
+					message: "Password UnUpdated"
+				})
 			}
 			
 		} catch (err) {

@@ -17,9 +17,10 @@ CREATE TABLE posts (
    post_title varchar(256) not null,
    post_discription text not null,
    post_img text not null,
+   post_img_name text not null,
    post_type varchar(64) not null,
-   post_status boolean not null,
    post_created_by varchar(128),
+   post_status boolean not null,   
    post_is_delete boolean DEFAULT false,
    post_created_at timestamptz DEFAULT CURRENT_TIMESTAMP,
    post_deleted_at timestamptz DEFAULT CURRENT_TIMESTAMP
@@ -154,9 +155,10 @@ CREATE TABLE posts_ru (
    post_title varchar(256) not null,
    post_discription text not null,
    post_img text not null,
+   post_img_name text not null,
    post_type varchar(64) not null,
-   post_status boolean not null,
    post_created_by varchar(128),
+   post_status boolean not null,   
    post_is_delete boolean DEFAULT false,
    post_created_at timestamptz DEFAULT CURRENT_TIMESTAMP,
    post_deleted_at timestamptz DEFAULT CURRENT_TIMESTAMP

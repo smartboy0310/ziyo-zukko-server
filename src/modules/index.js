@@ -14,6 +14,7 @@ const Certificate = require('./certificate/certificate')
 const Activity = require('./activity/activity')
 const Management = require('./management/management')
 const Employees = require('./employees/employees')
+const Post = require('./posts/posts')
 
 
 router
@@ -27,6 +28,11 @@ router
       .post('/photo/:lang',  Authorized.AUTH, FileUpload.single("photo"), Photo.POST)
       .put('/photo/:lang',  Authorized.AUTH, FileUpload.single("photo"), Photo.PUT)
       .delete('/photo/:lang',  Authorized.AUTH, Photo.DELETE)
+
+      .get('/post', Post.GET)
+      .post('/post/:lang',  Authorized.AUTH, FileUpload.single("photo"), Post.POST)
+      .put('/post/:lang',  Authorized.AUTH, FileUpload.single("photo"), Post.PUT)
+      .delete('/post/:lang',  Authorized.AUTH, Post.DELETE)
 
       .get('/video', Video.GET)
       .post('/video/:lang', Authorized.AUTH, Video.POST)
