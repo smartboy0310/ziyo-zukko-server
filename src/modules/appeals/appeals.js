@@ -15,6 +15,7 @@ module.exports = {
          })
       }
    },
+   
    POST: async (req, res) => {
       try {
          const { lang } = req.params
@@ -61,6 +62,7 @@ module.exports = {
          })
       }
    },
+
    PUT: async (req, res) => {
       try {
          const { lang } = req.params
@@ -105,6 +107,7 @@ module.exports = {
          })
       }
    },
+
    DELETE: async (req, res) => {
       try {    
          const { lang } = req.params      

@@ -20,8 +20,10 @@ module.exports = {
       try {
          const { lang } = req.params
          const {about_id, about_title, about_count} = req.body
-         if(lang == 'uz') {
+
+         if(lang == 'uz') {            
             const updateAbout = model.UPDATE_ABOUT(about_id, about_title, about_count)
+
             if(updateAbout) {
                res.json({
                   status: 200,
@@ -37,6 +39,7 @@ module.exports = {
          }
          if(lang == 'ru') {
             const updateAbout = model.UPDATE_ABOUT_RU(about_id, about_title, about_count)
+
             if(updateAbout) {
                res.json({
                   status: 200,

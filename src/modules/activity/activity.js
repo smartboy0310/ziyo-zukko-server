@@ -198,6 +198,7 @@ module.exports = {
       try {
          const { lang } = req.params        
          const {activity_id} = req.body
+         
          if (lang == 'uz') {
             const deleteAvtivity = await model.DELETE_ACTIVITY(activity_id)   
 
