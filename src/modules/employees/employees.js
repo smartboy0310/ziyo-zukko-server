@@ -201,6 +201,53 @@ module.exports = {
 			});
 		}
 	},
+
+	STATUS_EDIT: async (req, res) => {
+      try {
+         const { lang } = req.params
+         const {employee_id, employee_status} = req.body
+      
+         if(lang == 'uz') {
+            const editEmployee = await model.EDIT_STATUS(employee_id, employee_status) 
+
+            if (editEmployee) {
+               res.json({
+                  status: 200,
+                  message: 'Employee edited'
+               })
+            }
+            else {
+               res.json({
+                  status: 500,
+                  message: 'Employee Unedited'
+               })
+            }  
+         } 
+         
+         if(lang == 'ru') {
+            const editEmployee = await model.EDIT_STATUS_RU(employee_id, employee_status) 
+
+            if (editEmployee) {
+               res.json({
+                  status: 200,
+                  message: 'Employee edited'
+               })
+            }
+            else {
+               res.json({
+                  status: 500,
+                  message: 'Employee Unedited'
+               })
+            }  
+         } 
+      } catch (err) {
+	      res.json({
+				status: 500,
+				message: err.message,
+			})
+		}
+   },
+
 	DELETE: async (req, res) => {
 		try {
 			const { lang } = req.params

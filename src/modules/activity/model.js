@@ -115,6 +115,30 @@ class Activity extends PG {
       RETURNING *`, activity_id, activity_title, activity_photo, activity_photo_name, activity_status)
    }
 
+   EDIT_STATUS (activity_id, activity_status) {
+      return this.fetch(`
+
+      UPDATE
+               activity
+      SET
+               activity_status = $2
+      WHERE
+               management_id = $1
+      RETURNING *`, activity_id, activity_status)
+   }
+
+   EDIT_STATUS_RU (activity_id, activity_status) {
+      return this.fetch(`
+
+      UPDATE
+               activity_ru
+      SET
+               activity_status = $2
+      WHERE
+               activity_id = $1
+      RETURNING *`, activity_id, activity_status)
+   }
+
    DELETE_ACTIVITY(activity_id) {
       return this.fetch(`
          UPDATE

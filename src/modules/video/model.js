@@ -85,6 +85,30 @@ class Video extends PG {
       RETURNING *`, video_id, video_title, video_url, video_status)
    }
 
+   EDIT_STATUS (video_id, video_status) {
+      return this.fetch(`
+
+      UPDATE
+               video_box
+      SET
+               video_status = $2
+      WHERE
+               video_id = $1
+      RETURNING *`, video_id, video_status)
+   }
+
+   EDIT_STATUS_RU (video_id, video_status) {
+      return this.fetch(`
+
+      UPDATE
+               video_box_ru
+      SET
+               video_status = $2
+      WHERE
+               video_id = $1
+      RETURNING *`, video_id, video_status)
+   }
+
    DELETE_VIDEO (video_id) {
       return this.fetch(`
       UPDATE 

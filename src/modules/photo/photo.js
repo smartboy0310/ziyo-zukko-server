@@ -137,6 +137,53 @@ module.exports = {
 			})
 		}
    },
+
+   STATUS_EDIT: async (req, res) => {
+      try {
+         const { lang } = req.params
+         const {photo_id, photo_status} = req.body
+      
+         if(lang == 'uz') {
+            const editPhoto = await model.EDIT_STATUS(photo_id, photo_status) 
+
+            if (editPhoto) {
+               res.json({
+                  status: 200,
+                  message: 'Photo edited'
+               })
+            }
+            else {
+               res.json({
+                  status: 500,
+                  message: 'Photo Unedited'
+               })
+            }  
+         } 
+         
+         if(lang == 'ru') {
+            const editPhoto = await model.EDIT_STATUS_RU(photo_id, photo_status) 
+
+            if (editPhoto) {
+               res.json({
+                  status: 200,
+                  message: 'Photo edited'
+               })
+            }
+            else {
+               res.json({
+                  status: 500,
+                  message: 'Photo Unedited'
+               })
+            }  
+         } 
+      } catch (err) {
+	      res.json({
+				status: 500,
+				message: err.message,
+			})
+		}
+   },
+
    DELETE: async (req, res) => {
       try {
          const { lang } = req.params

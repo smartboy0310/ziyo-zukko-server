@@ -108,6 +108,53 @@ module.exports = {
          })
       }
    },
+
+   STATUS_EDIT: async (req, res) => {
+      try {
+         const { lang } = req.params
+         const {video_id, video_status} = req.body
+      
+         if(lang == 'uz') {
+            const editVideo = await model.EDIT_STATUS(video_id, video_status) 
+
+            if (editVideo) {
+               res.json({
+                  status: 200,
+                  message: 'Video edited'
+               })
+            }
+            else {
+               res.json({
+                  status: 500,
+                  message: 'Video Unedited'
+               })
+            }  
+         } 
+         
+         if(lang == 'ru') {
+            const editVideo = await model.EDIT_STATUS_RU(video_id, video_status) 
+
+            if (editVideo) {
+               res.json({
+                  status: 200,
+                  message: 'Video edited'
+               })
+            }
+            else {
+               res.json({
+                  status: 500,
+                  message: 'Video Unedited'
+               })
+            }  
+         } 
+      } catch (err) {
+	      res.json({
+				status: 500,
+				message: err.message,
+			})
+		}
+   },
+
    DELETE: async (req, res) => {
       try {
          const { lang } = req.params

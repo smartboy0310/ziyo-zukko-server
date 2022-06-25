@@ -146,6 +146,53 @@ module.exports = {
          })
       }
    },
+
+   STATUS_EDIT: async (req, res) => {
+      try {
+         const { lang } = req.params
+         const {certificate_id, certificate_status} = req.body
+      
+         if(lang == 'uz') {
+            const editCertificate = await model.EDIT_STATUS(certificate_id, certificate_status) 
+
+            if (editCertificate) {
+               res.json({
+                  status: 200,
+                  message: 'Certificate edited'
+               })
+            }
+            else {
+               res.json({
+                  status: 500,
+                  message: 'Certificate Unedited'
+               })
+            }  
+         } 
+         
+         if(lang == 'ru') {
+            const editCertificate = await model.EDIT_STATUS_RU(certificate_id, certificate_status) 
+
+            if (editCertificate) {
+               res.json({
+                  status: 200,
+                  message: 'Certificate edited'
+               })
+            }
+            else {
+               res.json({
+                  status: 500,
+                  message: 'Certificate Unedited'
+               })
+            }  
+         } 
+      } catch (err) {
+	      res.json({
+				status: 500,
+				message: err.message,
+			})
+		}
+   },
+
    DELETE: async (req, res) => {
       try {   
          const { lang } = req.params      

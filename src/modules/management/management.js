@@ -216,6 +216,53 @@ module.exports = {
          });
       }
    },
+
+   STATUS_EDIT: async (req, res) => {
+      try {
+         const { lang } = req.params
+         const {management_id, management_status} = req.body
+      
+         if(lang == 'uz') {
+            const editManagement = await model.EDIT_STATUS(management_id, management_status) 
+
+            if (editManagement) {
+               res.json({
+                  status: 200,
+                  message: 'Management edited'
+               })
+            }
+            else {
+               res.json({
+                  status: 500,
+                  message: 'Management Unedited'
+               })
+            }  
+         } 
+         
+         if(lang == 'ru') {
+            const editManagement = await model.EDIT_STATUS_RU(management_id, management_status) 
+
+            if (editManagement) {
+               res.json({
+                  status: 200,
+                  message: 'Management edited'
+               })
+            }
+            else {
+               res.json({
+                  status: 500,
+                  message: 'Management Unedited'
+               })
+            }  
+         } 
+      } catch (err) {
+	      res.json({
+				status: 500,
+				message: err.message,
+			})
+		}
+   },
+
    DELETE: async (req, res) => {
       try {
          const { lang } = req.params

@@ -139,6 +139,53 @@ module.exports = {
          })
       }
    },
+
+   STATUS_EDIT: async (req, res) => {
+      try {
+         const { lang } = req.params
+         const {partner_id, partner_status} = req.body
+      
+         if(lang == 'uz') {
+            const editPartner = await model.EDIT_STATUS(partner_id, partner_status) 
+
+            if (editPartner) {
+               res.json({
+                  status: 200,
+                  message: 'Partner edited'
+               })
+            }
+            else {
+               res.json({
+                  status: 500,
+                  message: 'Partner Unedited'
+               })
+            }  
+         } 
+         
+         if(lang == 'ru') {
+            const editPartner = await model.EDIT_STATUS_RU(partner_id, partner_status) 
+
+            if (editPartner) {
+               res.json({
+                  status: 200,
+                  message: 'Partner edited'
+               })
+            }
+            else {
+               res.json({
+                  status: 500,
+                  message: 'Partner Unedited'
+               })
+            }  
+         } 
+      } catch (err) {
+	      res.json({
+				status: 500,
+				message: err.message,
+			})
+		}
+   },
+
    DELETE: async (req, res) => {
       try {    
          const { lang } = req.params     

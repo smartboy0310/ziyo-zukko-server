@@ -139,13 +139,35 @@ class Posts extends PG {
          RETURNING *`, id, name, title, discription, img, img_name, type, created_by, status)
    }
 
+   EDIT_STATUS(id, status) {
+      return this.fetch(`
+      UPDATE
+            posts
+      SET
+            post_status = $2
+      WHERE
+            post_id = $1 
+      RETURNING *`, id, status)
+   }
+
+   EDIT_STATUS_RU(id, status) {
+      return this.fetch(`
+      UPDATE
+            posts_ru
+      SET
+            post_status = $2
+      WHERE
+            post_id = $1 
+      RETURNING *`, id, status)
+   }
+
    DELETE_POST(id) {
       return this.fetch(`
          UPDATE
                   posts
          SET
-                  photo_is_delete = true
-                  partner_deleted_at = CURRENT_TIMESTAMP
+                  post_is_delete = true
+                  post_deleted_at = CURRENT_TIMESTAMP
          WHERE
                   post_id = $1 
          RETURNING *`, id)
@@ -156,8 +178,8 @@ class Posts extends PG {
          UPDATE
                   posts_ru
          SET
-                  photo_is_delete = true
-                  partner_deleted_at = CURRENT_TIMESTAMP
+                  post_is_delete = true
+                  post_deleted_at = CURRENT_TIMESTAMP
          WHERE
                   post_id = $1 
          RETURNING *`, id)

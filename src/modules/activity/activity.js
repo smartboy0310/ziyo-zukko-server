@@ -147,6 +147,53 @@ module.exports = {
          })
       }
    },
+
+   STATUS_EDIT: async (req, res) => {
+      try {
+         const { lang } = req.params
+         const {activity_id, activity_status} = req.body
+      
+         if(lang == 'uz') {
+            const editActivity = await model.EDIT_STATUS(activity_id, activity_status) 
+
+            if (editActivity) {
+               res.json({
+                  status: 200,
+                  message: 'Activity edited'
+               })
+            }
+            else {
+               res.json({
+                  status: 500,
+                  message: 'Activity Unedited'
+               })
+            }  
+         } 
+         
+         if(lang == 'ru') {
+            const editActivity = await model.EDIT_STATUS_RU(activity_id, activity_status) 
+
+            if (editActivity) {
+               res.json({
+                  status: 200,
+                  message: 'Activity edited'
+               })
+            }
+            else {
+               res.json({
+                  status: 500,
+                  message: 'Activity Unedited'
+               })
+            }  
+         } 
+      } catch (err) {
+	      res.json({
+				status: 500,
+				message: err.message,
+			})
+		}
+   },
+
    DELETE: async (req, res) => {
       try {
          const { lang } = req.params        

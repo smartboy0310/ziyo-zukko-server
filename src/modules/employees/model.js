@@ -157,6 +157,30 @@ class Employees extends PG {
       RETURNING *`, employee_id, employee_name, employee_role, employee_image, employee_image_name, employee_winning, employee_full_info, employee_academic_degree, employee_telegram_link, employee_facebook_link, employee_instagram_link, employee_status)
    }
 
+   EDIT_STATUS (employee_id, employee_status) {
+      return this.fetch(`
+
+      UPDATE
+               employees
+      SET
+               employee_status = $2
+      WHERE
+               employee_id = $1
+      RETURNING *`, employee_id, employee_status)
+   }
+
+   EDIT_STATUS_RU (employee_id, employee_status) {
+      return this.fetch(`
+
+      UPDATE
+               employees_ru
+      SET
+               employee_status = $2
+      WHERE
+               employee_id = $1
+      RETURNING *`, employee_id, employee_status)
+   }
+
    DELETE_EMPLOYEES (employee_id) {
       return this.fetch(`
          UPDATE  

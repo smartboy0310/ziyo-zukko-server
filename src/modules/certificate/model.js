@@ -115,6 +115,30 @@ class Certificate extends PG {
       RETURNING *`, certificate_id, certificate_title, certificate_photo, certificate_photo_name, certificate_status)
    }
 
+   EDIT_STATUS (certificate_id, certificate_status) {
+      return this.fetch(`
+
+      UPDATE
+               our_certificate
+      SET
+               employee_status = $2
+      WHERE
+               certificate_id = $1
+      RETURNING *`, certificate_id, certificate_status)
+   }
+
+   EDIT_STATUS_RU (certificate_id, certificate_status) {
+      return this.fetch(`
+
+      UPDATE
+               our_certificate_ru
+      SET
+               certificate_status = $2
+      WHERE
+               certificate_id = $1
+      RETURNING *`, certificate_id, certificate_status)
+   }
+
    DELETE_CERTIFICATE(certificate_id) {
       return this.fetch(`
          UPDATE

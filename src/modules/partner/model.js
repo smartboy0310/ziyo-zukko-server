@@ -115,6 +115,30 @@ class Partner extends PG {
         RETURNING *`, partner_id, partner_name, partner_logo, partner_logo_name, partner_status)
    }
 
+   EDIT_STATUS (partner_id, partner_status) {
+      return this.fetch(`
+
+      UPDATE
+               partner
+      SET
+               partner_status = $2
+      WHERE
+               partner_id = $1
+      RETURNING *`, partner_id, partner_status)
+   }
+
+   EDIT_STATUS_RU (partner_id, partner_status) {
+      return this.fetch(`
+
+      UPDATE
+               partner_ru
+      SET
+               partner_status = $2
+      WHERE
+               partner_id = $1
+      RETURNING *`, partner_id, partner_status)
+   }
+   
    DELETE_PARTNER (partner_id) {
       return this.fetch(`
       UPDATE

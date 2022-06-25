@@ -34,13 +34,13 @@ module.exports = {
              if (addPost) {
                 res.json({
                   status: 200,
-                  message: 'Post Uploaded'
+                  message: 'Post Upcreated'
                 })
              }
              else {
                 res.json({
                   status: 500,
-                  message: 'Post UnUploaded'
+                  message: 'Post UnUpcreated'
                 })
              }
          }
@@ -51,13 +51,13 @@ module.exports = {
              if (addPost) {
                 res.json({
                   status: 200,
-                  message: 'Photo Uploaded'
+                  message: 'Photo Upcreated'
                 })
              }
              else {
                 res.json({
                   status: 500,
-                  message: 'Photo UnUploaded'
+                  message: 'Photo UnUpcreated'
                 })
              }
          }
@@ -140,6 +140,52 @@ module.exports = {
 		}
    },
 
+   STATUS_EDIT: async (req, res) => {
+      try {
+         const { lang } = req.params
+         const {post_id, post_status} = req.body
+      
+         if(lang == 'uz') {
+            const editPost = await model.EDIT_STATUS(post_id, post_status) 
+
+            if (editPost) {
+               res.json({
+                  status: 200,
+                  message: 'Post edited'
+               })
+            }
+            else {
+               res.json({
+                  status: 500,
+                  message: 'Post Unedited'
+               })
+            }  
+         } 
+         
+         if(lang == 'ru') {
+            const editPost = await model.EDIT_STATUS_RU(post_id, post_status) 
+
+            if (editPost) {
+               res.json({
+                  status: 200,
+                  message: 'Post edited'
+               })
+            }
+            else {
+               res.json({
+                  status: 500,
+                  message: 'Post Unedited'
+               })
+            }  
+         }  
+      } catch (err) {
+	      res.json({
+				status: 500,
+				message: err.message,
+			})
+		}
+   },
+
    DELETE: async (req, res) => {
       try {
          const { lang } = req.params
@@ -163,7 +209,7 @@ module.exports = {
          } 
          
          if(lang == 'ru') {
-            const deletePost = await model.DELETE_POST_RU(photo_id) 
+            const deletePost = await model.DELETE_POST_RU(post_id) 
 
             if (deletePost) {
                res.json({

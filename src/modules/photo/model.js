@@ -125,6 +125,30 @@ class Photo extends PG {
       RETURNING * `, photo_id, photo_title, photo_url, photo_category, photo_name, photo_status)
    }
 
+   EDIT_STATUS (photo_id, photo_status) {
+      return this.fetch(`
+
+      UPDATE
+               photo_box
+      SET
+               photo_status = $2
+      WHERE
+               photo_id = $1
+      RETURNING *`, photo_id, photo_status)
+   }
+
+   EDIT_STATUS_RU (photo_id, photo_status) {
+      return this.fetch(`
+
+      UPDATE
+               photo_box_ru
+      SET
+               photo_status = $2
+      WHERE
+               photo_id = $1
+      RETURNING *`, photo_id, photo_status)
+   }
+
    DELETE_PHOTO (photo_id) {
       return this.fetch(`
 

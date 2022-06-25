@@ -169,6 +169,30 @@ class Management extends PG {
       RETURNING *`, management_id, management_name, management_role, management_image, management_image_name, management_phone, management_reception_time, management_winning, management_full_info, management_academic_degree, management_telegram_link, management_facebook_link, management_instagram_link, management_status)
    }
 
+   EDIT_STATUS (management_id, management_status) {
+      return this.fetch(`
+
+      UPDATE
+               management
+      SET
+               management_status = $2
+      WHERE
+               management_id = $1
+      RETURNING *`, management_id, management_status)
+   }
+
+   EDIT_STATUS_RU (management_id, management_status) {
+      return this.fetch(`
+
+      UPDATE
+               management_ru
+      SET
+               management_status = $2
+      WHERE
+               management_id = $1
+      RETURNING *`, management_id, management_status)
+   }
+
    DELETE_MANAGEMENT (management_id) {
       return this.fetch(`
          UPDATE  

@@ -1,4 +1,5 @@
-CREATE TABLE superadmin  (
+
+CREATE TABLE admin  (
    id uuid DEFAULT uuid_generate_v4() PRIMARY KEY,
    login varchar(32) not null,
    password varchar(32) not null

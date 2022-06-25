@@ -28,21 +28,25 @@ router
       .post('/photo/:lang',  Authorized.AUTH, FileUpload.single("photo"), Photo.POST)
       .put('/photo/:lang',  Authorized.AUTH, FileUpload.single("photo"), Photo.PUT)
       .delete('/photo/:lang',  Authorized.AUTH, Photo.DELETE)
+      .put('/editPhoto/:lang',  Authorized.AUTH, Photo.STATUS_EDIT)
 
       .get('/post', Post.GET)
       .post('/post/:lang',  Authorized.AUTH, FileUpload.single("photo"), Post.POST)
       .put('/post/:lang',  Authorized.AUTH, FileUpload.single("photo"), Post.PUT)
       .delete('/post/:lang',  Authorized.AUTH, Post.DELETE)
+      .put('/editPost/:lang',  Authorized.AUTH, Post.STATUS_EDIT)
 
       .get('/video', Video.GET)
       .post('/video/:lang', Authorized.AUTH, Video.POST)
       .put('/video/:lang', Authorized.AUTH, Video.PUT)
       .delete('/video/:lang', Authorized.AUTH, Video.DELETE)
+      .put('/editVideo/:lang',  Authorized.AUTH, Video.STATUS_EDIT)
 
       .get('/partner', Authorized.AUTH, Partner.GET)
       .post('/partner/:lang', Authorized.AUTH, FileUpload.single("photo"), Partner.POST)
       .put('/partner/:lang', Authorized.AUTH, FileUpload.single("photo"), Partner.PUT)
       .delete('/partner/:lang', Authorized.AUTH, Partner.DELETE)
+      .put('/editPartner/:lang',  Authorized.AUTH, Partner.STATUS_EDIT)
 
       .get('/general', General.GET)
       .put('/general/:lang', Authorized.AUTH, General.PUT)
@@ -52,25 +56,30 @@ router
       .post('/appeals/:lang', Appeals.POST)
       .put('/appeals/:lang', Authorized.AUTH, Appeals.PUT)
       .delete('/appeals/:lang', Authorized.AUTH, Appeals.DELETE)
+      
 
       .get('/certificate', Certificate.GET)
       .post('/certificate/:lang', Authorized.AUTH, FileUpload.array("photos"), Certificate.POST)
       .put('/certificate/:lang', Authorized.AUTH, FileUpload.array("photos"), Certificate.PUT)
       .delete('/certificate/:lang', Authorized.AUTH, Certificate.DELETE)
+      .put('/editCertificate/:lang',  Authorized.AUTH, Certificate.STATUS_EDIT)
 
       .get('/activity', Activity.GET)
       .post('/activity/:lang', Authorized.AUTH, FileUpload.array("photos"), Activity.POST)
       .put('/activity/:lang', Authorized.AUTH, FileUpload.array("photos"), Activity.PUT)
       .delete('/activity/:lang', Authorized.AUTH, Activity.DELETE)
+      .put('/editActivity/:lang',  Authorized.AUTH, Activity.STATUS_EDIT)
 
       .get('/management', Management.GET)
       .post('/management/:lang', Authorized.AUTH, FileUpload.single("photo"), Management.POST)
       .put('/management/:lang', Authorized.AUTH, FileUpload.single("photo"), Management.PUT)
       .delete('/management/:lang', Authorized.AUTH, Management.DELETE)
+      .put('/editManagement/:lang',  Authorized.AUTH, Management.STATUS_EDIT)
 
       .get('/employees', Employees.GET)
       .post('/employees/:lang', Authorized.AUTH, FileUpload.single("photo"), Employees.POST)
       .put('/employees/:lang', Authorized.AUTH, FileUpload.single("photo"), Employees.PUT)
       .delete('/employees/:lang', Authorized.AUTH, Employees.DELETE)
+      .put('/editEmployees/:lang',  Authorized.AUTH, Employees.STATUS_EDIT)
 
 module.exports = router
