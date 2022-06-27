@@ -8,8 +8,10 @@ module.exports = {
        try {
           res.json( {
             status: 200,
-            uz: await model.ALL_CERTIFICATE(),
-            ru: await model.ALL_CERTIFICATE()
+            data: {
+               uz: await model.ALL_CERTIFICATE(),
+               ru: await model.ALL_CERTIFICATE_RU()
+            }
          })          
        } catch (error) {
           res.json({

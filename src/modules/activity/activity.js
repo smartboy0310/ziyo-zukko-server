@@ -8,8 +8,10 @@ module.exports = {
        try {
           res.json( {
             status: 200,
-            uz: await model.ALL_ACTIVITY(),
-            ru: await model.ALL_ACTIVITY_RU()
+            data: {
+               uz: await model.ALL_ACTIVITY(),
+               ru: await model.ALL_ACTIVITY_RU()
+            }
           })          
        } catch (error) {
           res.json({
@@ -198,7 +200,7 @@ module.exports = {
       try {
          const { lang } = req.params        
          const {activity_id} = req.body
-         
+
          if (lang == 'uz') {
             const deleteAvtivity = await model.DELETE_ACTIVITY(activity_id)   
 

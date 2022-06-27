@@ -5,8 +5,10 @@ module.exports = {
       try {
          res.json( {
             status: 200,
-            uz: await model.ALL_APPEALS(),
-            ru: await model.ALL_APPEALS_RU()
+            data: {
+               uz: await model.ALL_APPEALS(),
+               ru: await model.ALL_APPEALS_RU()
+            }
           })
       } catch (error) {
          res.json({
@@ -15,7 +17,7 @@ module.exports = {
          })
       }
    },
-   
+
    POST: async (req, res) => {
       try {
          const { lang } = req.params

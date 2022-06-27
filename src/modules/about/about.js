@@ -5,8 +5,10 @@ module.exports = {
       try {
          res.json( {
             status: 200,
-            uz: await model.ALL_ABOUT(),
-            ru: await model.ALL_ABOUT_RU()
+            data: {
+               uz: await model.ALL_ABOUT(),
+               ru: await model.ALL_ABOUT_RU()
+            }
          })         
       } catch (err) {
 	      res.json({

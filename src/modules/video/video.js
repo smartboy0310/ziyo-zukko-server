@@ -6,8 +6,10 @@ module.exports = {
       try {
          res.json({
             status: 200,
-            uz: await model.ALL_VIDEO(),
-            ru: await model.ALL_VIDEO_RU()
+            data: {
+               uz: await model.ALL_VIDEO(),
+               ru: await model.ALL_VIDEO_RU()
+            }
          })
       } catch (error) {
          res.json({

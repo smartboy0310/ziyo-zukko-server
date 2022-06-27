@@ -8,8 +8,10 @@ module.exports = {
       try {
          res.json({
             status: 200,
-            uz: await model.ALL_PHOTO(),
-            ru: await model.ALL_PHOTO_RU()
+            data: {
+               uz: await model.ALL_PHOTO(),
+               ru: await model.ALL_PHOTO_RU()
+            }
          })
       } catch (err) {
 	      res.json({
