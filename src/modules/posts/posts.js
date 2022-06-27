@@ -25,13 +25,13 @@ module.exports = {
       try {    
          const { lang } = req.params              
          const uploadPhoto = req.file;
-         const {post_name, post_title, post_discription, post_type, post_status} = req.body
+         const {post_name, post_title, post_discription, post_type, post_created_by, post_status} = req.body
 
          const post_img_name = uploadPhoto.originalname;
          const post_img = `${process.env.BACKEND_URL}/${uploadPhoto.originalname}`;         
 
          if(lang == 'uz') {
-            const addPost = await model.ADD_POST(post_name, post_title, post_discription, post_img, post_img_name, post_type, post_status)
+            const addPost = await model.ADD_POST(post_name, post_title, post_discription, post_img, post_img_name, post_type, post_created_by, post_status)
    
              if (addPost) {
                 res.json({
@@ -48,7 +48,7 @@ module.exports = {
          }
 
          if(lang == 'ru') {
-            const addPost = await model.ADD_POST_RU(post_name, post_title, post_discription, post_img, post_img_name, post_type, post_status)
+            const addPost = await model.ADD_POST_RU(post_name, post_title, post_discription, post_img, post_img_name, post_type, post_created_by, post_status)
    
              if (addPost) {
                 res.json({
@@ -75,7 +75,7 @@ module.exports = {
       try {
          const { lang } = req.params
          const uploadPhoto = req.file; 
-         const {post_id, post_name, post_title, post_discription, post_type, post_status} = req.body
+         const {post_id, post_name, post_title, post_discription, post_type, post_created_by, post_status} = req.body
          
          let post_img = '' 
          let post_img_name = ''
@@ -102,7 +102,7 @@ module.exports = {
          }
          
          if(lang == 'uz') {
-            const updatePost = await model.UPDATE_POST(post_id, post_name, post_title, post_discription, post_img, post_img_name, post_type, post_status)
+            const updatePost = await model.UPDATE_POST(post_id, post_name, post_title, post_discription, post_img, post_img_name, post_type, post_created_by, post_status)
 
             if (updatePost) {
                res.json({
@@ -119,7 +119,7 @@ module.exports = {
          }
 
          if(lang == 'ru') {
-            const updatePost = await model.UPDATE_POST_RU(post_id, post_name, post_title, post_discription, post_img, post_img_name, post_type, post_status)
+            const updatePost = await model.UPDATE_POST_RU(post_id, post_name, post_title, post_discription, post_img, post_img_name, post_type, post_created_by, post_status)
 
             if (updatePost) {
                res.json({
