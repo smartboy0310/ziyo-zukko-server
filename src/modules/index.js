@@ -42,7 +42,7 @@ router
       .delete('/video/:lang', Authorized.AUTH, Video.DELETE)
       .put('/editVideo/:lang',  Authorized.AUTH, Video.STATUS_EDIT)
 
-      .get('/partner', Authorized.AUTH, Partner.GET)
+      .get('/partner' , Partner.GET)
       .post('/partner/:lang', Authorized.AUTH, FileUpload.single("photo"), Partner.POST)
       .put('/partner/:lang', Authorized.AUTH, FileUpload.single("photo"), Partner.PUT)
       .delete('/partner/:lang', Authorized.AUTH, Partner.DELETE)
