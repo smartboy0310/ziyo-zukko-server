@@ -119,7 +119,7 @@ class Activity extends PG {
       return this.fetch(`
 
       UPDATE
-               activity
+               our_activity
       SET
                activity_status = $2
       WHERE
@@ -131,7 +131,7 @@ class Activity extends PG {
       return this.fetch(`
 
       UPDATE
-               activity_ru
+               our_activity_ru
       SET
                activity_status = $2
       WHERE
