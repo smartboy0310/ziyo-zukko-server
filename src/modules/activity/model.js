@@ -104,7 +104,7 @@ class Activity extends PG {
    UPDATE_ACTIVITY_RU(activity_id, activity_title, activity_photo, activity_photo_name, activity_status) {
       return this.fetch(`
          UPDATE
-                  our_activit_ru 
+                  our_activity_ru 
          SET
                   activity_title = $2,
                   activity_photo = $3, 
@@ -123,7 +123,7 @@ class Activity extends PG {
       SET
                activity_status = $2
       WHERE
-               management_id = $1
+               activity_id = $1
       RETURNING *`, activity_id, activity_status)
    }
 

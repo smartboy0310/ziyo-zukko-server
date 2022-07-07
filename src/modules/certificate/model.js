@@ -121,7 +121,7 @@ class Certificate extends PG {
       UPDATE
                our_certificate
       SET
-               employee_status = $2
+               certificate_status = $2
       WHERE
                certificate_id = $1
       RETURNING *`, certificate_id, certificate_status)
