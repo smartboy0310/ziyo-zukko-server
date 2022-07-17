@@ -51,10 +51,10 @@ class Employees extends PG {
       `, employee_id)
    }
 
-   ADD_EMPLOYEES(employee_name, employee_role, employee_image, employee_image_name, employee_winning, employee_full_info, employee_academic_degree, employee_telegram_link, employee_facebook_link, employee_instagram_link, employee_status) {
+   ADD_EMPLOYEES(employee_name, employee_role, employee_image, employee_image_name, employee_winning, employee_full_info, employee_academic_degree, employee_email, employee_telegram_link, employee_facebook_link, employee_instagram_link, employee_status) {
       return this.fetch(`
          INSERT INTO 
-                     employees(
+                     employees (
                         employee_name, 
                         employee_role, 
                         employee_image, 
@@ -62,6 +62,7 @@ class Employees extends PG {
                         employee_winning, 
                         employee_full_info, 
                         employee_academic_degree, 
+                        employee_email,
                         employee_telegram_link, 
                         employee_facebook_link, 
                         employee_instagram_link, 
@@ -78,12 +79,13 @@ class Employees extends PG {
                         $8,
                         $9,
                         $10,
-                        $11               
+                        $11,
+                        $12               
                      )
-      RETURNING *`, employee_name, employee_role, employee_image, employee_image_name, employee_winning, employee_full_info, employee_academic_degree, employee_telegram_link, employee_facebook_link, employee_instagram_link, employee_status)
+      RETURNING *`, employee_name, employee_role, employee_image, employee_image_name, employee_winning, employee_full_info, employee_academic_degree, employee_email, employee_telegram_link, employee_facebook_link, employee_instagram_link, employee_status)
    }
 
-   ADD_EMPLOYEES_RU(employee_name, employee_role, employee_image, employee_image_name, employee_winning, employee_full_info, employee_academic_degree, employee_telegram_link, employee_facebook_link, employee_instagram_link, employee_status) {
+   ADD_EMPLOYEES_RU(employee_name, employee_role, employee_image, employee_image_name, employee_winning, employee_full_info, employee_academic_degree, employee_email, employee_telegram_link, employee_facebook_link, employee_instagram_link, employee_status) {
       return this.fetch(`
          INSERT INTO 
                      employees_ru (
@@ -94,6 +96,7 @@ class Employees extends PG {
                         employee_winning, 
                         employee_full_info, 
                         employee_academic_degree, 
+                        employee_email,
                         employee_telegram_link, 
                         employee_facebook_link, 
                         employee_instagram_link, 
@@ -110,12 +113,13 @@ class Employees extends PG {
                         $8,
                         $9,
                         $10,
-                        $11               
+                        $11,
+                        $12               
                      )
-      RETURNING *`, employee_name, employee_role, employee_image, employee_image_name, employee_winning, employee_full_info, employee_academic_degree, employee_telegram_link, employee_facebook_link, employee_instagram_link, employee_status)
+      RETURNING *`, employee_name, employee_role, employee_image, employee_image_name, employee_winning, employee_full_info, employee_academic_degree, employee_email, employee_telegram_link, employee_facebook_link, employee_instagram_link, employee_status)
    }
 
-   UPDATE_EMPLOYEES(employee_id, employee_name, employee_role, employee_image, employee_image_name, employee_winning, employee_full_info, employee_academic_degree, employee_telegram_link, employee_facebook_link, employee_instagram_link, employee_status) {
+   UPDATE_EMPLOYEES (employee_id, employee_name, employee_role, employee_image, employee_image_name, employee_winning, employee_full_info, employee_academic_degree, employee_email, employee_telegram_link, employee_facebook_link, employee_instagram_link, employee_status) {
       return this.fetch(`
          UPDATE
                employees
@@ -127,16 +131,17 @@ class Employees extends PG {
                   employee_winning = $6, 
                   employee_full_info = $7, 
                   employee_academic_degree = $8, 
-                  employee_telegram_link = $9, 
-                  employee_facebook_link = $10, 
-                  employee_instagram_link = $11, 
-                  employee_status = $12
+                  employee_email = $9, 
+                  employee_telegram_link = $10, 
+                  employee_facebook_link = $11, 
+                  employee_instagram_link = $12, 
+                  employee_status = $13
          WHERE
                   employee_id = $1    
-      RETURNING *`, employee_id, employee_name, employee_role, employee_image, employee_image_name, employee_winning, employee_full_info, employee_academic_degree, employee_telegram_link, employee_facebook_link, employee_instagram_link, employee_status)
+      RETURNING *`, employee_id, employee_name, employee_role, employee_image, employee_image_name, employee_winning, employee_full_info, employee_academic_degree, employee_email, employee_telegram_link, employee_facebook_link, employee_instagram_link, employee_status)
    }
 
-   UPDATE_EMPLOYEES_RU (employee_id, employee_name, employee_role, employee_image, employee_image_name, employee_winning, employee_full_info, employee_academic_degree, employee_telegram_link, employee_facebook_link, employee_instagram_link, employee_status) {
+   UPDATE_EMPLOYEES_RU (employee_id, employee_name, employee_role, employee_image, employee_image_name, employee_winning, employee_full_info, employee_academic_degree, employee_email, employee_telegram_link, employee_facebook_link, employee_instagram_link, employee_status) {
       return this.fetch(`
          UPDATE
                employees_ru
@@ -148,13 +153,14 @@ class Employees extends PG {
                   employee_winning = $6, 
                   employee_full_info = $7, 
                   employee_academic_degree = $8, 
-                  employee_telegram_link = $9, 
-                  employee_facebook_link = $10, 
-                  employee_instagram_link = $11, 
-                  employee_status = $12
+                  employee_email = $9, 
+                  employee_telegram_link = $10, 
+                  employee_facebook_link = $11, 
+                  employee_instagram_link = $12, 
+                  employee_status = $13
          WHERE
                   employee_id = $1    
-      RETURNING *`, employee_id, employee_name, employee_role, employee_image, employee_image_name, employee_winning, employee_full_info, employee_academic_degree, employee_telegram_link, employee_facebook_link, employee_instagram_link, employee_status)
+      RETURNING *`, employee_id, employee_name, employee_role, employee_image, employee_image_name, employee_winning, employee_full_info, employee_academic_degree, employee_email, employee_telegram_link, employee_facebook_link, employee_instagram_link, employee_status)
    }
 
    EDIT_STATUS (employee_id, employee_status) {

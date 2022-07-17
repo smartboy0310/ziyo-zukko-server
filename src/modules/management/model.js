@@ -51,7 +51,7 @@ class Management extends PG {
       `, management_id)
    }
 
-   ADD_MANAGEMENT(management_name, management_role, management_image, management_image_name, management_phone, management_reception_time, management_winning, management_full_info, management_academic_degree, management_telegram_link, management_facebook_link, management_instagram_link, management_status) {
+   ADD_MANAGEMENT(management_name, management_role, management_image, management_image_name, management_phone, management_email, management_reception_time, management_winning, management_full_info, management_academic_degree, management_telegram_link, management_facebook_link, management_instagram_link, management_status) {
       return this.fetch(`
          INSERT INTO 
                      management (
@@ -60,6 +60,7 @@ class Management extends PG {
                         management_image, 
                         management_image_name,
                         management_phone, 
+                        management_email, 
                         management_reception_time, 
                         management_winning, 
                         management_full_info, 
@@ -84,10 +85,10 @@ class Management extends PG {
                         $12,
                         $13
                      )
-      RETURNING *`, management_name, management_role, management_image, management_image_name, management_phone, management_reception_time, management_winning, management_full_info, management_academic_degree, management_telegram_link, management_facebook_link, management_instagram_link, management_status)
+      RETURNING *`, management_name, management_role, management_image, management_image_name, management_phone, management_email, management_reception_time, management_winning, management_full_info, management_academic_degree, management_telegram_link, management_facebook_link, management_instagram_link, management_status)
    }
 
-   ADD_MANAGEMENT_RU(management_name, management_role, management_image, management_image_name, management_phone, management_reception_time, management_winning, management_full_info, management_academic_degree, management_telegram_link, management_facebook_link, management_instagram_link, management_status) {
+   ADD_MANAGEMENT_RU(management_name, management_role, management_image, management_image_name, management_phone, management_email, management_reception_time, management_winning, management_full_info, management_academic_degree, management_telegram_link, management_facebook_link, management_instagram_link, management_status) {
       return this.fetch(`
          INSERT INTO 
                      management_ru (
@@ -96,6 +97,7 @@ class Management extends PG {
                         management_image, 
                         management_image_name,
                         management_phone, 
+                        management_email,
                         management_reception_time, 
                         management_winning, 
                         management_full_info, 
@@ -120,10 +122,10 @@ class Management extends PG {
                         $12,
                         $13
                      )
-      RETURNING *`, management_name, management_role, management_image, management_image_name, management_phone, management_reception_time, management_winning, management_full_info, management_academic_degree, management_telegram_link, management_facebook_link, management_instagram_link, management_status)
+      RETURNING *`, management_name, management_role, management_image, management_image_name, management_phone, management_email, management_reception_time, management_winning, management_full_info, management_academic_degree, management_telegram_link, management_facebook_link, management_instagram_link, management_status)
    }
 
-   UPDATE_MANAGEMENT (management_id, management_name, management_role, management_image, management_image_name, management_phone, management_reception_time, management_winning, management_full_info, management_academic_degree, management_telegram_link, management_facebook_link, management_instagram_link, management_status) {
+   UPDATE_MANAGEMENT (management_id, management_name, management_role, management_image, management_image_name, management_phone, management_email, management_reception_time, management_winning, management_full_info, management_academic_degree, management_telegram_link, management_facebook_link, management_instagram_link, management_status) {
       return this.fetch(`
          UPDATE
                   management
@@ -133,20 +135,21 @@ class Management extends PG {
                   management_image = $4, 
                   management_image_name = $5, 
                   management_phone = $6, 
-                  management_reception_time = $7, 
-                  management_winning = $8, 
-                  management_full_info = $9, 
-                  management_academic_degree = $10, 
-                  management_telegram_link = $11, 
-                  management_facebook_link = $12, 
-                  management_instagram_link = $13, 
-                  management_status = $14
+                  management_email = $7
+                  management_reception_time = $8, 
+                  management_winning = $9, 
+                  management_full_info = $10, 
+                  management_academic_degree = $11, 
+                  management_telegram_link = $12, 
+                  management_facebook_link = $13, 
+                  management_instagram_link = $14, 
+                  management_status = $15
          WHERE
                   management_id = $1    
-      RETURNING *`, management_id, management_name, management_role, management_image, management_image_name, management_phone, management_reception_time, management_winning, management_full_info, management_academic_degree, management_telegram_link, management_facebook_link, management_instagram_link, management_status)
+      RETURNING *`, management_id, management_name, management_role, management_image, management_image_name, management_phone, management_email, management_reception_time, management_winning, management_full_info, management_academic_degree, management_telegram_link, management_facebook_link, management_instagram_link, management_status)
    }
 
-   UPDATE_MANAGEMENT_RU (management_id, management_name, management_role, management_image, management_image_name, management_phone, management_reception_time, management_winning, management_full_info, management_academic_degree, management_telegram_link, management_facebook_link, management_instagram_link, management_status) {
+   UPDATE_MANAGEMENT_RU (management_id, management_name, management_role, management_image, management_image_name, management_phone, management_email, management_reception_time, management_winning, management_full_info, management_academic_degree, management_telegram_link, management_facebook_link, management_instagram_link, management_status) {
       return this.fetch(`
          UPDATE
                   management_ru
@@ -156,17 +159,18 @@ class Management extends PG {
                   management_image = $4, 
                   management_image_name = $5, 
                   management_phone = $6, 
-                  management_reception_time = $7, 
-                  management_winning = $8, 
-                  management_full_info = $9, 
-                  management_academic_degree = $10, 
-                  management_telegram_link = $11, 
-                  management_facebook_link = $12, 
-                  management_instagram_link = $13, 
-                  management_status = $14
+                  management_email = $7
+                  management_reception_time = $8, 
+                  management_winning = $9, 
+                  management_full_info = $10, 
+                  management_academic_degree = $11, 
+                  management_telegram_link = $12, 
+                  management_facebook_link = $13, 
+                  management_instagram_link = $14, 
+                  management_status = $15
          WHERE
                   management_id = $1    
-      RETURNING *`, management_id, management_name, management_role, management_image, management_image_name, management_phone, management_reception_time, management_winning, management_full_info, management_academic_degree, management_telegram_link, management_facebook_link, management_instagram_link, management_status)
+      RETURNING *`, management_id, management_name, management_role, management_image, management_image_name, management_phone, management_email, management_reception_time, management_winning, management_full_info, management_academic_degree, management_telegram_link, management_facebook_link, management_instagram_link, management_status)
    }
 
    EDIT_STATUS (management_id, management_status) {
