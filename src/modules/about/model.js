@@ -7,6 +7,8 @@ class About extends PG {
                * 
       FROM 
                about
+      ORDER BY
+               about_id
       `)
    }
    ALL_ABOUT_RU() {
@@ -15,6 +17,8 @@ class About extends PG {
                * 
       FROM 
                about_ru
+      ORDER BY
+               about_id
       `)
    }
    UPDATE_ABOUT(id, title, count) {
