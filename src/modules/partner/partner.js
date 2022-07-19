@@ -24,14 +24,14 @@ module.exports = {
       try {
          const { lang } = req.params
          const uploadPhoto = req.file
-         const {partner_name, partner_status} = req.body
+         const {partner_name, partner_link, partner_status} = req.body
 
          const partner_logo = `${process.env.BACKEND_URL}/${uploadPhoto.originalname}`
          const partner_logo_name = uploadPhoto.originalname
          
 
          if(lang == 'uz') {
-            const createdPartner = await model.ADD_PARTNER(partner_name, partner_logo, partner_logo_name, partner_status)
+            const createdPartner = await model.ADD_PARTNER(partner_name,partner_link, partner_logo, partner_logo_name, partner_status)
 
             if (createdPartner) {
                res.json({
@@ -48,7 +48,7 @@ module.exports = {
          }
 
          if(lang == 'ru') {
-            const createdPartner = await model.ADD_PARTNER_RU(partner_name, partner_logo, partner_logo_name, partner_status)
+            const createdPartner = await model.ADD_PARTNER_RU(partner_name, partner_link, partner_logo, partner_logo_name, partner_status)
 
             if (createdPartner) {
                res.json({
@@ -75,7 +75,7 @@ module.exports = {
       try {
          const { lang } = req.params
          const uploadPhoto = req.file
-         const {partner_id, partner_name, partner_status} = req.body
+         const {partner_id, partner_name, partner_link, partner_status} = req.body
 
          let partner_logo = ''
          let partner_logo_name = ''
@@ -101,7 +101,7 @@ module.exports = {
          }
 
          if(lang == 'uz') {
-            const UpdatedPartner = await model.UPDATE_PARTNER(partner_id, partner_name, partner_logo, partner_logo_name, partner_status)
+            const UpdatedPartner = await model.UPDATE_PARTNER(partner_id, partner_name, partner_link, partner_logo, partner_logo_name, partner_status)
          
             if (UpdatedPartner) {
                res.json({
@@ -118,7 +118,7 @@ module.exports = {
          }
 
          if(lang == 'ru') {
-            const UpdatedPartner = await model.UPDATE_PARTNER_RU(partner_id, partner_name, partner_logo, partner_logo_name, partner_status)
+            const UpdatedPartner = await model.UPDATE_PARTNER_RU(partner_id, partner_name, partner_link, partner_logo, partner_logo_name, partner_status)
          
             if (UpdatedPartner) {
                res.json({

@@ -52,6 +52,7 @@ CREATE TABLE video_box (
 CREATE TABLE partner (
    partner_id serial PRIMARY KEY,
    partner_name varchar(256) not null,
+   partner_link text not null,
    partner_logo text not null,
    partner_logo_name text not null,
    partner_status boolean not null,
@@ -192,6 +193,7 @@ CREATE TABLE video_box_ru (
 CREATE TABLE partner_ru (
    partner_id serial PRIMARY KEY,
    partner_name varchar(256) not null,
+   partner_link text not null,
    partner_logo text not null,
    partner_logo_name text not null,
    partner_status boolean not null,
