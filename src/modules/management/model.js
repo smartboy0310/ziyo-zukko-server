@@ -83,7 +83,8 @@ class Management extends PG {
                         $10,
                         $11,
                         $12,
-                        $13
+                        $13,
+                        $14
                      )
       RETURNING *`, management_name, management_role, management_image, management_image_name, management_phone, management_email, management_reception_time, management_winning, management_full_info, management_academic_degree, management_telegram_link, management_facebook_link, management_instagram_link, management_status)
    }
@@ -120,7 +121,8 @@ class Management extends PG {
                         $10,
                         $11,
                         $12,
-                        $13
+                        $13,
+                        $14
                      )
       RETURNING *`, management_name, management_role, management_image, management_image_name, management_phone, management_email, management_reception_time, management_winning, management_full_info, management_academic_degree, management_telegram_link, management_facebook_link, management_instagram_link, management_status)
    }

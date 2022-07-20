@@ -26,7 +26,7 @@ module.exports = {
          const uploadPhoto = req.files
          const { activity_title, activity_status } = req.body
          const { lang } = req.params
-         
+         console.log(req.files);
          const activity_photo = []
          const activity_photo_name = []
 
