@@ -137,7 +137,7 @@ class Management extends PG {
                   management_image = $4, 
                   management_image_name = $5, 
                   management_phone = $6, 
-                  management_email = $7
+                  management_email = $7,
                   management_reception_time = $8, 
                   management_winning = $9, 
                   management_full_info = $10, 
@@ -161,7 +161,7 @@ class Management extends PG {
                   management_image = $4, 
                   management_image_name = $5, 
                   management_phone = $6, 
-                  management_email = $7
+                  management_email = $7,
                   management_reception_time = $8, 
                   management_winning = $9, 
                   management_full_info = $10, 
