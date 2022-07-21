@@ -27,6 +27,32 @@ class Posts extends PG {
       `)
    }
 
+   SEARCH_POST (search_data) {
+      return this.fetchAll(`
+         SELECT 
+               *
+         FROM 
+               posts
+         WHERE 
+               post_is_delete = false AND (post_name ILIKE $1 OR post_title ILIKE $1 OR post_discription ILIKE $1 OR post_type ILIKE OR  post_created_by ILIKE)
+         ORDER BY
+               post_id DESC
+      `, search_data)
+   }
+
+   SEARCH_POST_RU (search_data) {
+      return this.fetchAll(`
+         SELECT 
+               *
+         FROM 
+               posts_ru
+         WHERE 
+               post_is_delete = false AND (post_name ILIKE $1 OR post_title ILIKE $1 OR post_discription ILIKE $1 OR post_type ILIKE OR  post_created_by ILIKE)
+         ORDER BY
+               post_id DESC
+      `, search_data)
+   }
+
    SELECTED_POST(id) {
       return this.fetch(`
          SELECT

@@ -4,21 +4,42 @@ const FS = require('../../lib/fs/fs')
 const path = require('path');
 
 module.exports = {
-   GET: async (_, res) => {
+   GET: async (req, res) => {
       try {
+         const {lang, search_data} = req.params
+         if(search_data && lang == 'uz') {
+            res.json( {
+               status: 200,
+               data: {
+                  uz: await model.SEARCH_POST(search_data),
+                  ru: await model.ALL_POST_RU()
+               }
+             })
+         }
+         else if (search_data && lang == 'ru') {
+            res.json( {
+               status: 200,
+               data: {
+                  uz: await model.ALL_POST(),
+                  ru: await model.SEARCH_POST_RU(search_data)
+               }
+             })
+         }
+         else{
+            res.json( {
+               status: 200,
+               data: {
+                  uz: await model.ALL_POST(),
+                  ru: await model.ALL_POST_RU()
+               }
+             })
+         }
+      } catch (error) {
          res.json({
-            status: 200,
-            data: {
-               uz: await model.ALL_POST(),
-               ru: await model.ALL_POST_RU()
-            }
+            status: 500,
+            message: error.message
          })
-      } catch (err) {
-	      res.json({
-				status: 500,
-				message: err.message,
-			})
-		}
+      }
    },
 
    POST: async (req, res) => {

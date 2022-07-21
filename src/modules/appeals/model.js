@@ -26,6 +26,31 @@ class Appeals extends PG {
       `)
    }
 
+   SEARCH_APPEALS(search_data) {
+      return this.fetchAll(`
+         SELECT 
+                  * 
+         FROM 
+                  appeals 
+         WHERE
+                  applicant_is_delete = false AND (applicant_name ILIKE $1 OR applicant_phone ILIKE $1 OR  applicant_content ILIKE $1 )
+         ORDER BY
+                  applicant_id DESC
+      `, search_data)
+   }
+   SEARCH_APPEALS_RU(search_data) {
+      return this.fetchAll(`
+         SELECT 
+                  * 
+         FROM 
+                  appeals_ru 
+         WHERE
+                  applicant_is_delete = false AND (applicant_name ILIKE $1 OR applicant_phone ILIKE $1 OR  applicant_content ILIKE $1 )
+         ORDER BY
+                  applicant_id DESC
+      `, search_data)
+   }
+
    ADD_APPEALS(applicant_name, applicant_phone, applicant_class, applicant_content) {
       return this.fetch(`
          INSERT INTO 

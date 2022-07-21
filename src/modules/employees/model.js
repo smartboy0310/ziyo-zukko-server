@@ -27,6 +27,32 @@ class Employees extends PG {
       `)
    }
 
+   SEARCH_EMPLOYEES(search_data) {
+      return this.fetchAll(`
+         SELECT
+                  *
+         FROM
+                  employees
+         WHERE 
+                  employee_is_delete = false AND (employee_name ILIKE $1 OR employee_role ILIKE $1)
+         ORDER BY
+                  employee_id DESC
+      `, search_data)
+   }
+
+   SEARCH_EMPLOYEES_RU(search_data) {
+      return this.fetchAll(`
+         SELECT
+                  *
+         FROM
+                  employees_ru
+         WHERE 
+                  employee_is_delete = false AND (employee_name ILIKE $1 OR employee_role ILIKE $1)
+         ORDER BY
+                  employee_id DESC
+      `, search_data)
+   }
+
    SELECTED_EMPLOYEES(employee_id) {
       return this.fetch(`
       SELECT   

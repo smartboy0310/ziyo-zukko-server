@@ -27,6 +27,32 @@ class Photo extends PG {
       `)
    }
 
+   SEARCH_PHOTO (search_data) {
+      return this.fetchAll(`
+         SELECT 
+                  *
+         FROM
+                  photo_box
+         WHERE 
+                  photo_is_delete = false AND (photo_title ILIKE $1 OR photo_category ILIKE $1)
+         ORDER BY
+                  photo_id DESC
+      `, search_data)
+   }
+
+   SEARCH_PHOTO_RU (search_data) {
+      return this.fetchAll(`
+         SELECT 
+                  *
+         FROM
+                  photo_box_ru
+         WHERE 
+                  photo_is_delete = false
+         ORDER BY
+                  photo_id DESC
+      `, search_data)
+   }
+
    SELECTED__PHOTO(photo_id) {
       return this.fetch(`
       SELECT   

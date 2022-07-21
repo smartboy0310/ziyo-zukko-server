@@ -2,15 +2,36 @@ require('dotenv').config()
 const model = require('./model')
 
 module.exports = {
-   GET: async (_, res) => {
+   GET: async (req, res) => {
       try {
-         res.json({
-            status: 200,
-            data: {
-               uz: await model.ALL_VIDEO(),
-               ru: await model.ALL_VIDEO_RU()
-            }
-         })
+         const {lang, search_data} = req.params
+         if(search_data && lang == 'uz') {
+            res.json( {
+               status: 200,
+               data: {
+                  uz: await model.SEARCH_VIDEO(search_data),
+                  ru: await model.ALL_VIDEO_RU()
+               }
+             })
+         }
+         else if (search_data && lang == 'ru') {
+            res.json( {
+               status: 200,
+               data: {
+                  uz: await model.ALL_VIDEO(),
+                  ru: await model.SEARCH_VIDEO_RU(search_data)
+               }
+             })
+         }
+         else{
+            res.json( {
+               status: 200,
+               data: {
+                  uz: await model.ALL_VIDEO(),
+                  ru: await model.ALL_VIDEO_RU()
+               }
+             })
+         }
       } catch (error) {
          res.json({
             status: 500,
@@ -18,6 +39,7 @@ module.exports = {
          })
       }
    },
+
    POST: async(req, res) => {
       try {
          const { lang } = req.params

@@ -24,19 +24,19 @@ router
       .get('/about', About.GET)
       .put('/about/:lang', Authorized.AUTH, About.PUT)
 
-      .get('/photo', Photo.GET)
+      .get('/photo/:lang/:search_data', Photo.GET)
       .post('/photo/:lang',  Authorized.AUTH, FileUpload.single("photo"), Photo.POST)
       .put('/photo/:lang',  Authorized.AUTH, FileUpload.single("photo"), Photo.PUT)
       .delete('/photo/:lang',  Authorized.AUTH, Photo.DELETE)
       .put('/editPhoto/:lang',  Authorized.AUTH, Photo.STATUS_EDIT)
 
-      .get('/post', Post.GET)
+      .get('/post/:lang/:search_data', Post.GET)
       .post('/post/:lang',  Authorized.AUTH, FileUpload.single("photo"), Post.POST)
       .put('/post/:lang',  Authorized.AUTH, FileUpload.single("photo"), Post.PUT)
       .delete('/post/:lang',  Authorized.AUTH, Post.DELETE)
       .put('/editPost/:lang',  Authorized.AUTH, Post.STATUS_EDIT)
 
-      .get('/video', Video.GET)
+      .get('/video/:lang/:search_data', Video.GET)
       .post('/video/:lang', Authorized.AUTH, Video.POST)
       .put('/video/:lang', Authorized.AUTH, Video.PUT)
       .delete('/video/:lang', Authorized.AUTH, Video.DELETE)
@@ -52,7 +52,7 @@ router
       .put('/general/:lang', Authorized.AUTH, General.PUT)
 
 
-      .get('/appeals', Appeals.GET)
+      .get('/appeals/:lang/:search_data', Appeals.GET)
       .post('/appeals/:lang', Appeals.POST)
       .put('/appeals/:lang', Authorized.AUTH, Appeals.PUT)
       .delete('/appeals/:lang', Authorized.AUTH, Appeals.DELETE)
@@ -76,7 +76,7 @@ router
       .delete('/management/:lang', Authorized.AUTH, Management.DELETE)
       .put('/editManagement/:lang',  Authorized.AUTH, Management.STATUS_EDIT)
 
-      .get('/employees', Employees.GET)
+      .get('/employees/:lang/:search_data', Employees.GET)
       .post('/employees/:lang', Authorized.AUTH, FileUpload.single("photo"), Employees.POST)
       .put('/employees/:lang', Authorized.AUTH, FileUpload.single("photo"), Employees.PUT)
       .delete('/employees/:lang', Authorized.AUTH, Employees.DELETE)
