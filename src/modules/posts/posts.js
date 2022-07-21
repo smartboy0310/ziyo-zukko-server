@@ -82,11 +82,11 @@ module.exports = {
          let selectedPost = {}
 
          if(lang == 'uz') {
-            selectedPost = await model.SELECTED__POST(post_id)
+            selectedPost = await model.SELECTED_POST(post_id)
          }
          
          if(lang == 'ru') {
-            selectedPost = await model.SELECTED__POST_RU(post_id)
+            selectedPost = await model.SELECTED_POST_RU(post_id)
          }
 
          const deleteOldPost = new FS(path.resolve(__dirname, '..', '..', '..', 'public', 'images',`${selectedPost?.photo_name}`))                     
