@@ -11,7 +11,7 @@ module.exports = {
             res.json( {
                status: 200,
                data: {
-                  uz: await model.SEARCH_POST(search_data),
+                  uz: await model.SEARCH_POST(`%${search_data}%`),
                   ru: await model.ALL_POST_RU()
                }
              })
@@ -21,7 +21,7 @@ module.exports = {
                status: 200,
                data: {
                   uz: await model.ALL_POST(),
-                  ru: await model.SEARCH_POST_RU(search_data)
+                  ru: await model.SEARCH_POST_RU(`%${search_data}%`)
                }
              })
          }

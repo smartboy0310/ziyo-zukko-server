@@ -11,7 +11,7 @@ module.exports = {
             res.json( {
                status: 200,
                data: {
-                  uz: await model.SEARCH_EMPLOYEES(search_data),
+                  uz: await model.SEARCH_EMPLOYEES(`%${search_data}%`),
                   ru: await model.ALL_EMPLOYEES_RU()
                }
              })
@@ -21,7 +21,7 @@ module.exports = {
                status: 200,
                data: {
                   uz: await model.ALL_EMPLOYEES(),
-                  ru: await model.SEARCH_EMPLOYEES_RU(search_data)
+                  ru: await model.SEARCH_EMPLOYEES_RU(`%${search_data}%`)
                }
              })
          }
@@ -41,7 +41,7 @@ module.exports = {
          })
       }
    },
-	
+
 	POST: async (req, res) => {
 		try {
 			const { lang } = req.params

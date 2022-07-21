@@ -8,7 +8,7 @@ module.exports = {
             res.json( {
                status: 200,
                data: {
-                  uz: await model.SEARCH_APPEALS(search_data),
+                  uz: await model.SEARCH_APPEALS(`%${search_data}%`),
                   ru: await model.ALL_APPEALS_RU()
                }
              })
@@ -18,7 +18,7 @@ module.exports = {
                status: 200,
                data: {
                   uz: await model.ALL_APPEALS(),
-                  ru: await model.SEARCH_APPEALS_RUU(search_data)
+                  ru: await model.SEARCH_APPEALS_RUU(`%${search_data}%`)
                }
              })
          }

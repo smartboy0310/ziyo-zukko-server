@@ -9,7 +9,7 @@ module.exports = {
             res.json( {
                status: 200,
                data: {
-                  uz: await model.SEARCH_VIDEO(search_data),
+                  uz: await model.SEARCH_VIDEO(`%${search_data}%`),
                   ru: await model.ALL_VIDEO_RU()
                }
              })
@@ -19,7 +19,7 @@ module.exports = {
                status: 200,
                data: {
                   uz: await model.ALL_VIDEO(),
-                  ru: await model.SEARCH_VIDEO_RU(search_data)
+                  ru: await model.SEARCH_VIDEO_RU(`%${search_data}%`)
                }
              })
          }

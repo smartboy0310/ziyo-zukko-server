@@ -34,7 +34,7 @@ class Posts extends PG {
          FROM 
                posts
          WHERE 
-               post_is_delete = false AND (post_name ILIKE $1 OR post_title ILIKE $1 OR post_discription ILIKE $1 OR post_type ILIKE OR  post_created_by ILIKE)
+               post_is_delete = false AND (post_name ILIKE $1 OR post_title ILIKE $1 OR post_discription ILIKE $1 OR post_type ILIKE $1 OR post_created_by ILIKE $1)
          ORDER BY
                post_id DESC
       `, search_data)
@@ -47,7 +47,7 @@ class Posts extends PG {
          FROM 
                posts_ru
          WHERE 
-               post_is_delete = false AND (post_name ILIKE $1 OR post_title ILIKE $1 OR post_discription ILIKE $1 OR post_type ILIKE OR  post_created_by ILIKE)
+               post_is_delete = false AND (post_name ILIKE $1 OR post_title ILIKE $1 OR post_discription ILIKE $1 OR post_type ILIKE $1 OR  post_created_by ILIKE $1)
          ORDER BY
                post_id DESC
       `, search_data)
