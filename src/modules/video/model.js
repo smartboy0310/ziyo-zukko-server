@@ -14,7 +14,7 @@ class Video extends PG {
       `)
    }
 
-   ALL_VIDEO_RU (search_data) {
+   ALL_VIDEO_RU () {
       return this.fetchAll(`
          SELECT 
                   *
@@ -24,7 +24,7 @@ class Video extends PG {
                   video_is_delete = false
          ORDER BY
                   video_id DESC
-      `, search_data)
+      `)
    }
 
    SEARCH_VIDEO (search_data) {
@@ -40,7 +40,7 @@ class Video extends PG {
       `, search_data)
    }
 
-   SEARCH_VIDEO_RU () {
+   SEARCH_VIDEO_RU (search_data) {
       return this.fetchAll(`
          SELECT 
                   *

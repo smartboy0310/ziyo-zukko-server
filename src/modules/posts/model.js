@@ -192,7 +192,7 @@ class Posts extends PG {
          UPDATE
                   posts
          SET
-                  post_is_delete = true
+                  post_is_delete = true,
                   post_deleted_at = CURRENT_TIMESTAMP
          WHERE
                   post_id = $1 
@@ -204,7 +204,7 @@ class Posts extends PG {
          UPDATE
                   posts_ru
          SET
-                  post_is_delete = true
+                  post_is_delete = true,
                   post_deleted_at = CURRENT_TIMESTAMP
          WHERE
                   post_id = $1 
