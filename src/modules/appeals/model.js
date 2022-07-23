@@ -109,28 +109,28 @@ class Appeals extends PG {
       RETURNING *`, applicant_id, applicant_status)
    }
 
-   DELETE_APPEALS(applicant_id) {
+   DELETE_APPEALS (applicant_id) {
       return this.fetch(`
-         UPDATE
-                     appeals
-         SET
-                     applicant_is_delete = true, 
-                     applicant_deleted_at = CURRENT_TIMESTAMP 
+         UPDATE  
+                  appeals
+         SET   
+                  applicant_is_delete = true,
+                  applicant_deleted_at = CURRENT_TIMESTAMP
          WHERE
-                     applicant_id = $1
-      RETURNING *`, applicant_id)
+                  applicant_id = $1    
+      RETURNING *`, applicant_id )
    }
 
-   DELETE_APPEALS_RU(applicant_id) {
+   DELETE_APPEALS_RU (applicant_id) {
       return this.fetch(`
-         UPDATE
-                     appeals_ru
-         SET
-                     applicant_is_delete = true, 
-                     applicant_deleted_at = CURRENT_TIMESTAMP 
+         UPDATE  
+                  appeals_ru
+         SET   
+                  applicant_is_delete = true,
+                  applicant_deleted_at = CURRENT_TIMESTAMP
          WHERE
-                     applicant_id = $1
-      RETURNING *`, applicant_id)
+                  applicant_id = $1    
+      RETURNING *`, applicant_id )
    }
 }
 

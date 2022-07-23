@@ -134,11 +134,11 @@ module.exports = {
    DELETE: async (req, res) => {
       try {    
          const { lang } = req.params      
-         const {applicant_id} = req.body
-
-         if(lang = 'uz') {
-            const deleteAppeals = await model.DELETE_APPEALS(applicant_id)   
+         const { applicant_id } = req.body
          
+         if(lang == 'uz') {
+            const deleteAppeals = await model.DELETE_APPEALS(applicant_id)   
+
             if (deleteAppeals) {
                res.json({
                   status: 200,
@@ -152,7 +152,7 @@ module.exports = {
                })
             }
          }
-         if(lang = 'ru') {
+         if(lang == 'ru') {
             const deleteAppeals = await model.DELETE_APPEALS_RU(applicant_id)   
          
             if (deleteAppeals) {
