@@ -6,21 +6,12 @@ const path = require('path');
 module.exports = {
    GET: async (req, res) => {
       try {
-         const {lang, search_data} = req.params
-         if(search_data && lang == 'uz') {
+         const { search_data} = req.params
+         if(search_data) {
             res.json( {
                status: 200,
                data: {
                   uz: await model.SEARCH_PHOTO(`%${search_data}%`),
-                  ru: await model.ALL_PHOTO_RU()
-               }
-             })
-         }
-         else if (search_data && lang == 'ru') {
-            res.json( {
-               status: 200,
-               data: {
-                  uz: await model.ALL_PHOTO(),
                   ru: await model.SEARCH_PHOTO_RU(`%${search_data}%`)
                }
              })

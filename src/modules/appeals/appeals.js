@@ -3,22 +3,13 @@ const model = require('./model')
 module.exports = {
    GET: async (req, res) => {
       try {
-         const {lang, search_data} = req.params
-         if(search_data && lang == 'uz') {
+         const {search_data} = req.params
+         if(search_data) {
             res.json( {
                status: 200,
                data: {
                   uz: await model.SEARCH_APPEALS(`%${search_data}%`),
-                  ru: await model.ALL_APPEALS_RU()
-               }
-             })
-         }
-         else if (search_data && lang == 'ru') {
-            res.json( {
-               status: 200,
-               data: {
-                  uz: await model.ALL_APPEALS(),
-                  ru: await model.SEARCH_APPEALS_RUU(`%${search_data}%`)
+                  ru: await model.SEARCH_APPEALS_RU(`%${search_data}%`)
                }
              })
          }
@@ -135,7 +126,7 @@ module.exports = {
       try {    
          const { lang } = req.params      
          const { applicant_id } = req.body
-         
+
          if(lang == 'uz') {
             const deleteAppeals = await model.DELETE_APPEALS(applicant_id)   
 
