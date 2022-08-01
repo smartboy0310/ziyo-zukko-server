@@ -26,8 +26,8 @@ module.exports = {
          const uploadPhoto = req.file
          const {partner_name, partner_link, partner_status} = req.body
 
-         const partner_logo = `${process.env.BACKEND_URL}/${uploadPhoto.originalname}`
-         const partner_logo_name = uploadPhoto.originalname
+         const partner_logo = `${process.env.BACKEND_URL}/${uploadPhoto.filename}`
+         const partner_logo_name = uploadPhoto.filename
          
 
          if(lang == 'uz') {
@@ -92,8 +92,8 @@ module.exports = {
 
          if(uploadPhoto) {
             deleteOldLogo.delete()
-            partner_logo = `${process.env.BACKEND_URL}/${uploadPhoto.originalname}`
-            partner_logo_name = uploadPhoto.originalname
+            partner_logo = `${process.env.BACKEND_URL}/${uploadPhoto.filename}`
+            partner_logo_name = uploadPhoto.filename
          }
          else {
             partner_logo = selectedPartner?.partner_logo

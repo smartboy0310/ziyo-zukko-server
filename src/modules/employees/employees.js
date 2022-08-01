@@ -50,8 +50,8 @@ module.exports = {
 				employee_status
 			} = req.body;
 
-			const employee_image = `${process.env.BACKEND_URL}/${uploadPhoto.originalname}`;
-			const employee_image_name = uploadPhoto.originalname;
+			const employee_image = `${process.env.BACKEND_URL}/${uploadPhoto.filename}`;
+			const employee_image_name = uploadPhoto.filename;
 
 			if(lang == 'uz') {
 				const createdEmployee = await model.ADD_EMPLOYEES(
@@ -149,8 +149,8 @@ module.exports = {
 			
 			if (uploadPhoto) {
 				deleteOld.delete();
-				employee_image = `${process.env.BACKEND_URL}/${uploadPhoto.originalname}`;
-				employee_image_name = uploadPhoto.originalname;
+				employee_image = `${process.env.BACKEND_URL}/${uploadPhoto.filename}`;
+				employee_image_name = uploadPhoto.filename;
 			} else {
 				employee_image = selectedEmployee.employee_image;
 				employee_image_name = selectedEmployee.employee_image_name;

@@ -77,7 +77,7 @@ class Posts extends PG {
       `, id)
    }
 
-   ADD_POST (name, title, discription, img, img_name, type, created_by, status) {
+   ADD_POST (name, title, discription, img, img_name, video_one, video_two, video_three, type, created_by, status) {
       return this.fetch(`
          INSERT INTO 
                      posts (
@@ -86,6 +86,9 @@ class Posts extends PG {
                         post_discription,
                         post_img,
                         post_img_name,
+                        post_video_one,
+                        post_video_two,
+                        post_video_three,
                         post_type,
                         post_created_by,
                         post_status                        
@@ -98,12 +101,15 @@ class Posts extends PG {
                      $5,
                      $6,
                      $7,
-                     $8
+                     $8,
+                     $9,
+                     $10,
+                     $11
                   )
-         RETURNING *`, name, title, discription, img, img_name, type, created_by, status)
+         RETURNING *`, name, title, discription, img, img_name, video_one, video_two, video_three, type, created_by, status)
    }
 
-   ADD_POST_RU (name, title, discription, img, img_name, type, created_by, status) {
+   ADD_POST_RU (name, title, discription, img, img_name, video_one, video_two, video_three, type, created_by, status) {
       return this.fetch(`
          INSERT INTO 
                      posts_ru (
@@ -112,6 +118,9 @@ class Posts extends PG {
                         post_discription,
                         post_img,
                         post_img_name,
+                        post_video_one,
+                        post_video_two,
+                        post_video_three,
                         post_type,
                         post_created_by,
                         post_status                        
@@ -124,12 +133,15 @@ class Posts extends PG {
                      $5,
                      $6,
                      $7,
-                     $8
+                     $8,
+                     $9,
+                     $10,
+                     $11
                   )
-         RETURNING *`, name, title, discription, img, img_name, type, created_by, status)
+         RETURNING *`, name, title, discription, img, img_name, video_one, video_two, video_three, type, created_by, status)
    }
 
-   UPDATE_POST(id, name, title, discription, img, img_name, type, created_by, status) {
+   UPDATE_POST(id, name, title, discription, img, img_name, video_one, video_two, video_three, type, created_by, status) {
       return this.fetch(`
          UPDATE
                   posts
@@ -139,15 +151,18 @@ class Posts extends PG {
                   post_discription = $4,
                   post_img = $5,
                   post_img_name = $6,
-                  post_type = $7,
-                  post_created_by = $8,
-                  post_status = $9
+                  post_video_one = $7,
+                  post_video_two = $8,
+                  post_video_three = $9,
+                  post_type = $10,
+                  post_created_by = $11,
+                  post_status = $12
          WHERE
                   post_id = $1 
-         RETURNING *`, id, name, title, discription, img, img_name, type, created_by, status)
+         RETURNING *`, id, name, title, discription, img, img_name, video_one, video_two, video_three, type, created_by, status)
    }
 
-   UPDATE_POST_RU(id, name, title, discription, img, img_name, type, created_by, status) {
+   UPDATE_POST_RU(id, name, title, discription, img, img_name, video_one, video_two, video_three, type, created_by, status) {
       return this.fetch(`
          UPDATE
                   posts_ru
@@ -157,12 +172,15 @@ class Posts extends PG {
                   post_discription = $4,
                   post_img = $5,
                   post_img_name = $6,
-                  post_type = $7,
-                  post_created_by = $8,
-                  post_status = $9
+                  post_video_one = $7,
+                  post_video_two = $8,
+                  post_video_three = $9,
+                  post_type = $10,
+                  post_created_by = $11,
+                  post_status = $12
          WHERE
                   post_id = $1 
-         RETURNING *`, id, name, title, discription, img, img_name, type, created_by, status)
+         RETURNING *`, id, name, title, discription, img, img_name, type, video_one, video_two, video_three, created_by, status)
    }
 
    EDIT_STATUS(id, status) {

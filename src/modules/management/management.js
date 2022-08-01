@@ -39,8 +39,8 @@ module.exports = {
             management_status,
          } = req.body;
 
-         const management_image = `${process.env.BACKEND_URL}/${uploadPhoto.originalname}`;
-         const management_image_name = uploadPhoto.originalname;
+         const management_image = `${process.env.BACKEND_URL}/${uploadPhoto.filename}`;
+         const management_image_name = uploadPhoto.filename;
 
          if (lang == 'uz') {
             const createdManagement = await model.ADD_MANAGEMENT(
@@ -146,8 +146,8 @@ module.exports = {
 
          if (uploadPhoto) {
             deleteOld.delete();
-            management_image = `${process.env.BACKEND_URL}/${uploadPhoto.originalname}`;
-            management_image_name = uploadPhoto.originalname;
+            management_image = `${process.env.BACKEND_URL}/${uploadPhoto.filename}`;
+            management_image_name = uploadPhoto.filename;
          } else {
             management_image = selectedManagement?.management_image;
             management_image_name = selectedManagement?.management_image_name;

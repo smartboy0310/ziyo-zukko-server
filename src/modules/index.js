@@ -33,8 +33,8 @@ router
 
       .get('/post/:search_data', Post.GET)
       .get('/post', Post.GET)
-      .post('/post/:lang',  Authorized.AUTH, FileUpload.single("photo"), Post.POST)
-      .put('/post/:lang',  Authorized.AUTH, FileUpload.single("photo"), Post.PUT)
+      .post('/post/:lang',  Authorized.AUTH, FileUpload.array("photos"), Post.POST)
+      .put('/post/:lang',  Authorized.AUTH, FileUpload.array("photos"), Post.PUT)
       .delete('/post/:lang',  Authorized.AUTH, Post.DELETE)
       .put('/editPost/:lang',  Authorized.AUTH, Post.STATUS_EDIT)
 

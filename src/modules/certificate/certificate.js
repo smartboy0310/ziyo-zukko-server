@@ -31,8 +31,8 @@ module.exports = {
          
          
          uploadPhoto.map(e => {
-            certificate_photo.push(`${process.env.BACKEND_URL}/${e.originalname}`)
-            certificate_photo_name.push(e.originalname)
+            certificate_photo.push(`${process.env.BACKEND_URL}/${e.filename}`)
+            certificate_photo_name.push(e.filename)
          })
          
          if(lang == 'uz') {
@@ -93,17 +93,21 @@ module.exports = {
          const certificate_photo_name = []
 
          if(uploadPhoto.length) {
-            uploadPhoto.map((e, i) => {
-               const deleteOld = new FS(path.resolve(__dirname, '..', '..', '..', 'public', 'images',`${selectedCertificate?.certificate_photo_name[i]}`)).delete()
-               certificate_photo.push(`${process.env.BACKEND_URL}/${e.originalname}`)
-               certificate_photo_name.push(e.originalname)
+
+            selectedCertificate?.certificate_photo_name.forEach(e => {
+                FS(path.resolve(__dirname, '..', '..', '..', 'public', 'images',`${e}`)).delete()
+            })
+
+            uploadPhoto.forEach(e => {
+               certificate_photo.push(`${process.env.BACKEND_URL}/${e.filename}`)
+               certificate_photo_name.push(e.filename)
             })
          }  
          else{
-            selectedCertificate?.certificate_photo.map(e => {
+            selectedCertificate?.certificate_photo.forEach(e => {
                certificate_photo.push(e)
             })
-            selectedCertificate?.certificate_photo_name.map(e => {
+            selectedCertificate?.certificate_photo_name.forEach(e => {
                certificate_photo_name.push(e)
             })
          }

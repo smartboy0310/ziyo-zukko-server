@@ -31,8 +31,8 @@ module.exports = {
          const activity_photo_name = []
 
          uploadPhoto.map(e => {
-            activity_photo.push(`${process.env.BACKEND_URL}/${e.originalname}`)
-            activity_photo_name.push(e.originalname)
+            activity_photo.push(`${process.env.BACKEND_URL}/${e.filename}`)
+            activity_photo_name.push(e.filename)
          })
          
          if (lang == 'uz') {
@@ -93,17 +93,19 @@ module.exports = {
          }                 
                
          if(uploadPhoto.length) {
-            uploadPhoto.map((e, i) => {
-               const deleteOld = new FS(path.resolve(__dirname, '..', '..', '..', 'public', 'images',`${selectedActivity?.activity_photo_name[i]}`)).delete()
-               activity_photo.push(`${process.env.BACKEND_URL}/${e.originalname}`)
-               activity_photo_name.push(e.originalname)
+            selectedActivity?.activity_photo_name.forEach(e => {
+                new FS(path.resolve(__dirname, '..', '..', '..', 'public', 'images',`${e}`)).delete()
+            })
+            uploadPhoto.forEach((e) => {
+               activity_photo.push(`${process.env.BACKEND_URL}/${e.filename}`)
+               activity_photo_name.push(e.filename)
             })
          }
          else {
-            selectedActivity?.activity_photo.map(e => {
+            selectedActivity?.activity_photo.forEach(e => {
                activity_photo.push(e)
             })
-            selectedActivity?.activity_photo_name.map(e => {
+            selectedActivity?.activity_photo_name.forEach(e => {
                activity_photo_name.push(e)
             })
          }

@@ -17,8 +17,11 @@ CREATE TABLE posts (
    post_name varchar(64) not null,
    post_title varchar(256) not null,
    post_discription text not null,
-   post_img text not null,
-   post_img_name text not null,
+   post_img text [] not null,
+   post_img_name text [] not null,
+   post_video_one text,
+   post_video_two text,
+   post_video_three text,
    post_type varchar(64) not null,
    post_created_by varchar(128),
    post_status boolean not null,   
@@ -69,7 +72,8 @@ CREATE TABLE general (
    work_time varchar(32) not null,
    telegram_link text not null,
    facebook_link text not null,
-   instagram_link text not null
+   instagram_link text not null,
+   youtube_link text not null
 );
 
 
@@ -158,8 +162,11 @@ CREATE TABLE posts_ru (
    post_name varchar(64) not null,
    post_title varchar(256) not null,
    post_discription text not null,
-   post_img text not null,
-   post_img_name text not null,
+   post_img text [] not null,
+   post_img_name text [] not null,
+   post_video_one text,
+   post_video_two text,
+   post_video_three text,
    post_type varchar(64) not null,
    post_created_by varchar(128),
    post_status boolean not null,   
@@ -210,7 +217,8 @@ CREATE TABLE general_ru (
    work_time varchar(32) not null,
    telegram_link text not null,
    facebook_link text not null,
-   instagram_link text not null
+   instagram_link text not null,
+   youtube_link text not null
 );
 
 

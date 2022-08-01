@@ -36,14 +36,23 @@ module.exports = {
    POST: async (req, res) => {
       try {    
          const { lang } = req.params              
-         const uploadPhoto = req.file;
-         const {post_name, post_title, post_discription, post_type, post_created_by, post_status} = req.body
+         const uploadPhoto = req.files;
+         const {post_name, post_title, post_discription, post_video_one, post_video_two, post_video_three, post_type, post_created_by, post_status} = req.body
 
-         const post_img_name = uploadPhoto.originalname;
-         const post_img = `${process.env.BACKEND_URL}/${uploadPhoto.originalname}`;         
+         const post_img_name = []
+         const post_img = []  
+         
+         uploadPhoto?.forEach(e => {
+            post_img.push(`${process.env.BACKEND_URL}/${uploadPhoto.filename}`)
+            post_img_name.push(uploadPhoto.filename)
+         })
+
+         const video_one = post_video_one ? post_video_one : null
+         const video_two = post_video_two ? post_video_two : null
+         const video_three = post_video_three ? post_video_three : null
 
          if(lang == 'uz') {
-            const addPost = await model.ADD_POST(post_name, post_title, post_discription, post_img, post_img_name, post_type, post_created_by, post_status)
+            const addPost = await model.ADD_POST(post_name, post_title, post_discription, post_img, post_img_name, video_one, video_two, video_three, post_type, post_created_by, post_status)
    
              if (addPost) {
                 res.json({
@@ -60,7 +69,7 @@ module.exports = {
          }
 
          if(lang == 'ru') {
-            const addPost = await model.ADD_POST_RU(post_name, post_title, post_discription, post_img, post_img_name, post_type, post_created_by, post_status)
+            const addPost = await model.ADD_POST_RU(post_name, post_title, post_discription, post_img, post_img_name, video_one, video_two, video_three, post_type, post_created_by, post_status)
    
              if (addPost) {
                 res.json({
@@ -87,10 +96,18 @@ module.exports = {
       try {
          const { lang } = req.params
          const uploadPhoto = req.file; 
-         const {post_id, post_name, post_title, post_discription, post_type, post_created_by, post_status} = req.body
+         const {post_id, post_name, post_title, post_discription, post_video_one, post_video_two, post_video_three, post_type, post_created_by, post_status} = req.body
          
-         let post_img = '' 
-         let post_img_name = ''
+         const post_img_name = []
+         const post_img = []  
+         
+        
+
+         const video_one = post_video_one ? post_video_one : null
+         const video_two = post_video_two ? post_video_two : null
+         const video_three = post_video_three ? post_video_three : null
+
+        
          let selectedPost = {}
 
          if(lang == 'uz') {
@@ -101,20 +118,30 @@ module.exports = {
             selectedPost = await model.SELECTED_POST_RU(post_id)
          }
 
-         const deleteOldPost = new FS(path.resolve(__dirname, '..', '..', '..', 'public', 'images',`${selectedPost?.photo_name}`))                     
+                            
          
-         if (uploadPhoto) {
-            post_img_name = uploadPhoto.originalname;
-            post_img = `${process.env.BACKEND_URL}/${uploadPhoto.originalname}`;
-            deleteOldPost.delete()
+         if (uploadPhoto.length) {
+
+            selectedPost?.post_img_name.forEach( e => {
+                new FS(path.resolve(__dirname, '..', '..', '..', 'public', 'images',`${e}`)).delete()  
+            })
+            uploadPhoto?.forEach(e => {
+               post_img.push(`${process.env.BACKEND_URL}/${uploadPhoto.filename}`)
+               post_img_name.push(uploadPhoto.filename)
+            })
+            
          } 
          else {
-            post_img_name = selectedPost?.post_img_name;
-            post_img = selectedPost?.post_img;
+            selectedPost?.post_img.forEach( e => {
+               post_img.push(e)
+         })
+            selectedPost?.post_img_name.forEach( e => {
+                 post_img_name.push(e)
+           })
          }
          
          if(lang == 'uz') {
-            const updatePost = await model.UPDATE_POST(post_id, post_name, post_title, post_discription, post_img, post_img_name, post_type, post_created_by, post_status)
+            const updatePost = await model.UPDATE_POST(post_id, post_name, post_title, post_discription, post_img, post_img_name, video_one, video_two, video_three, post_type, post_created_by, post_status)
 
             if (updatePost) {
                res.json({
@@ -131,7 +158,7 @@ module.exports = {
          }
 
          if(lang == 'ru') {
-            const updatePost = await model.UPDATE_POST_RU(post_id, post_name, post_title, post_discription, post_img, post_img_name, post_type, post_created_by, post_status)
+            const updatePost = await model.UPDATE_POST_RU(post_id, post_name, post_title, post_discription, post_img, post_img_name, video_one, video_two, video_three, post_type, post_created_by, post_status)
 
             if (updatePost) {
                res.json({

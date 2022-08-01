@@ -39,8 +39,8 @@ module.exports = {
          const uploadPhoto = req.file;
          const {photo_title, photo_category, photo_status} = req.body
 
-         const photo_name = uploadPhoto.originalname;
-         const photo_url = `${process.env.BACKEND_URL}/${uploadPhoto.originalname}`;         
+         const photo_name = uploadPhoto.filename;
+         const photo_url = `${process.env.BACKEND_URL}/${uploadPhoto.filename}`;         
 
          if(lang == 'uz') {
             const addPhoto = await model.ADD_PHOTO(photo_title, photo_url, photo_category, photo_name, photo_status)
@@ -103,8 +103,8 @@ module.exports = {
          const deleteOldPhoto = new FS(path.resolve(__dirname, '..', '..', '..', 'public', 'images',`${selectedPhoto?.photo_name}`))                     
          
          if (uploadPhoto) {
-            photo_name = uploadPhoto.originalname;
-            photo_url = `${process.env.BACKEND_URL}/${uploadPhoto.originalname}`;
+            photo_name = uploadPhoto.filename;
+            photo_url = `${process.env.BACKEND_URL}/${uploadPhoto.filename}`;
             deleteOldPhoto.delete()
          } 
          else {

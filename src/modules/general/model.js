@@ -19,7 +19,7 @@ class Generel extends PG {
       `)
    }
 
-   UPDATE_GENERAL(phone, email, address, locition, work_time, telegram_link, facebook_link, instagram_link) {
+   UPDATE_GENERAL(phone, email, address, locition, work_time, telegram_link, facebook_link, instagram_link, youtube_link) {
       return this.fetch(`
          UPDATE 
                   general
@@ -31,11 +31,12 @@ class Generel extends PG {
                   work_time = $5, 
                   telegram_link = $6, 
                   facebook_link = $7, 
-                  instagram_link = $8
-      RETURNING *`, phone, email, address, locition, work_time, telegram_link, facebook_link, instagram_link)
+                  instagram_link = $8,
+                  youtube_link = $9
+      RETURNING *`, phone, email, address, locition, work_time, telegram_link, facebook_link, instagram_link, youtube_link)
    }
 
-   UPDATE_GENERAL_RU(phone, email, address, locition, work_time, telegram_link, facebook_link, instagram_link) {
+   UPDATE_GENERAL_RU(phone, email, address, locition, work_time, telegram_link, facebook_link, instagram_link, youtube_link) {
       return this.fetch(`
          UPDATE 
                   general_ru
@@ -47,8 +48,9 @@ class Generel extends PG {
                   work_time = $5, 
                   telegram_link = $6, 
                   facebook_link = $7, 
-                  instagram_link = $8
-      RETURNING *`, phone, email, address, locition, work_time, telegram_link, facebook_link, instagram_link)
+                  instagram_link = $8,
+                  youtube_link = $9
+      RETURNING *`, phone, email, address, locition, work_time, telegram_link, facebook_link, instagram_link, youtube_link)
    }
 }
 
