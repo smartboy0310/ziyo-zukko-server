@@ -19,6 +19,8 @@ CREATE TABLE posts (
    post_discription text not null,
    post_img text [] not null,
    post_img_name text [] not null,
+   post_add_link_title text,
+   post_add_link_url text,
    post_video_one text,
    post_video_two text,
    post_video_three text,

@@ -40,6 +40,8 @@ module.exports = {
 				post_name,
 				post_title,
 				post_discription,
+				add_link_title, 
+				add_link_url,
 				post_video_one,
 				post_video_two,
 				post_video_three,
@@ -61,6 +63,8 @@ module.exports = {
 			const video_one = post_video_one ? post_video_one : null;
 			const video_two = post_video_two ? post_video_two : null;
 			const video_three = post_video_three ? post_video_three : null;
+			const link_title = add_link_title ? add_link_title : null;
+			const link_url = add_link_url ? add_link_url : null;
 
 			if (lang == 'uz') {
 				const addPost = await model.ADD_POST(
@@ -69,6 +73,8 @@ module.exports = {
 					post_discription,
 					post_img,
 					post_img_name,
+					link_title,
+					link_url,
 					video_one,
 					video_two,
 					video_three,
@@ -97,6 +103,8 @@ module.exports = {
 					post_discription,
 					post_img,
 					post_img_name,
+					link_title,
+					link_url,
 					video_one,
 					video_two,
 					video_three,
@@ -134,6 +142,8 @@ module.exports = {
 				post_name,
 				post_title,
 				post_discription,
+				add_link_title, 
+				add_link_url,
 				post_video_one,
 				post_video_two,
 				post_video_three,
@@ -148,6 +158,8 @@ module.exports = {
 			const video_one = post_video_one ? post_video_one : null;
 			const video_two = post_video_two ? post_video_two : null;
 			const video_three = post_video_three ? post_video_three : null;
+			const link_title = add_link_title ? add_link_title : null;
+			const link_url = add_link_url ? add_link_url : null;
 
 			let selectedPost = {};
 
@@ -196,6 +208,8 @@ module.exports = {
 					post_discription,
 					post_img,
 					post_img_name,
+					link_title,
+					link_url,
 					video_one,
 					video_two,
 					video_three,
@@ -225,6 +239,8 @@ module.exports = {
 					post_discription,
 					post_img,
 					post_img_name,
+					link_title,
+					link_url,
 					video_one,
 					video_two,
 					video_three,
