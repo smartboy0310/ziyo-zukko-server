@@ -55,9 +55,9 @@ module.exports = {
          
 			uploadPhoto?.forEach((e) => {
 				post_img.push(
-					`${process.env.BACKEND_URL}/${uploadPhoto.filename}`,
+					`${process.env.BACKEND_URL}/${e.filename}`,
 				);
-				post_img_name.push(uploadPhoto.filename);
+				post_img_name.push(e.filename);
 			});
 
 			const video_one = post_video_one ? post_video_one : null;
@@ -116,12 +116,12 @@ module.exports = {
 				if (addPost) {
 					res.json({
 						status: 200,
-						message: 'Photo Upcreated',
+						message: 'Post Upcreated',
 					});
 				} else {
 					res.json({
 						status: 500,
-						message: 'Photo UnUpcreated',
+						message: 'Post UnUpcreated',
 					});
 				}
 			}
@@ -187,9 +187,9 @@ module.exports = {
 				});
 				uploadPhoto?.forEach((e) => {
 					post_img.push(
-						`${process.env.BACKEND_URL}/${uploadPhoto.filename}`,
+						`${process.env.BACKEND_URL}/${e.filename}`,
 					);
-					post_img_name.push(uploadPhoto.filename);
+					post_img_name.push(e.filename);
 				});
 			} else {
 				selectedPost?.post_img.forEach((e) => {
